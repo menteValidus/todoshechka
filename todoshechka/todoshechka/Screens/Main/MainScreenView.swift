@@ -8,8 +8,9 @@ struct MainScreen: View {
     var body: some View {
         VStack {
             topView
-            
             welcomeMessage
+                .padding(.bottom)
+            summary
         }
         .padding(.horizontal, 24)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
@@ -36,6 +37,30 @@ extension MainScreen {
             .font(.system(size: 74))
             .lineSpacing(0)
             .frame(maxWidth: .infinity, alignment: .leading)
+    }
+    
+    var summary: some View {
+        HStack {
+            VStack(alignment: .leading) {
+                Text("Today's Monday")
+                    .foregroundColor(Color("colors/onPrimaryVariant3"))
+                    .font(.body)
+                Text("Dec 12, 2022")
+                    .foregroundColor(Color("colors/onPrimaryVariant4"))
+                    .font(.caption)
+            }
+            
+            Spacer()
+            
+            VStack(alignment: .trailing) {
+                Text("75% Done")
+                    .foregroundColor(Color("colors/onPrimaryVariant3"))
+                    .font(.body)
+                Text("Completed Tasks")
+                    .foregroundColor(Color("colors/onPrimaryVariant4"))
+                    .font(.caption)
+            }
+        }
     }
 }
 
