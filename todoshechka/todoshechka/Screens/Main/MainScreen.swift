@@ -11,6 +11,8 @@ struct MainScreen: View {
             welcomeMessage
                 .padding(.bottom)
             summary
+            StyledPicker()
+                .padding(.top)
         }
         .padding(.horizontal, 24)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
