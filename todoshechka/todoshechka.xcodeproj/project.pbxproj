@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A157D1F29CC72C4000E9EEB /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 1A157D1E29CC72C4000E9EEB /* RswiftLibrary */; };
+		1A157D2529CC73EA000E9EEB /* ColorResource+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A157D2429CC73EA000E9EEB /* ColorResource+SwiftUI.swift */; };
 		1A50C61C29CB51FA00B137E3 /* todoshechkaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A50C61B29CB51FA00B137E3 /* todoshechkaApp.swift */; };
 		1A50C61E29CB51FA00B137E3 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A50C61D29CB51FA00B137E3 /* MainScreen.swift */; };
 		1A50C62029CB51FB00B137E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A50C61F29CB51FB00B137E3 /* Assets.xcassets */; };
@@ -35,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A157D2429CC73EA000E9EEB /* ColorResource+SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ColorResource+SwiftUI.swift"; sourceTree = "<group>"; };
 		1A50C61829CB51FA00B137E3 /* todoshechka.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = todoshechka.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A50C61B29CB51FA00B137E3 /* todoshechkaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = todoshechkaApp.swift; sourceTree = "<group>"; };
 		1A50C61D29CB51FA00B137E3 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
@@ -54,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A157D1F29CC72C4000E9EEB /* RswiftLibrary in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +78,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A157D2329CC73D3000E9EEB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1A157D2429CC73EA000E9EEB /* ColorResource+SwiftUI.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		1A50C60F29CB51FA00B137E3 = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +109,7 @@
 		1A50C61A29CB51FA00B137E3 /* todoshechka */ = {
 			isa = PBXGroup;
 			children = (
+				1A157D2329CC73D3000E9EEB /* Extensions */,
 				1A6161D629CB64F000C7E63B /* Screens */,
 				1A50C61B29CB51FA00B137E3 /* todoshechkaApp.swift */,
 				1A50C61F29CB51FB00B137E3 /* Assets.xcassets */,
@@ -162,8 +175,12 @@
 			buildRules = (
 			);
 			dependencies = (
+				1A157D2129CC72ED000E9EEB /* PBXTargetDependency */,
 			);
 			name = todoshechka;
+			packageProductDependencies = (
+				1A157D1E29CC72C4000E9EEB /* RswiftLibrary */,
+			);
 			productName = todoshechka;
 			productReference = 1A50C61829CB51FA00B137E3 /* todoshechka.app */;
 			productType = "com.apple.product-type.application";
@@ -236,6 +253,9 @@
 				Base,
 			);
 			mainGroup = 1A50C60F29CB51FA00B137E3;
+			packageReferences = (
+				1A157D1D29CC72C4000E9EEB /* XCRemoteSwiftPackageReference "R" */,
+			);
 			productRefGroup = 1A50C61929CB51FA00B137E3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -281,6 +301,7 @@
 				1A50C61E29CB51FA00B137E3 /* MainScreen.swift in Sources */,
 				1A6161DC29CC62CC00C7E63B /* StyledPicker.swift in Sources */,
 				1A50C61C29CB51FA00B137E3 /* todoshechkaApp.swift in Sources */,
+				1A157D2529CC73EA000E9EEB /* ColorResource+SwiftUI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +325,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		1A157D2129CC72ED000E9EEB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 1A157D2029CC72ED000E9EEB /* RswiftGenerateInternalResources */;
+		};
 		1A50C62B29CB51FB00B137E3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1A50C61729CB51FA00B137E3 /* todoshechka */;
@@ -624,6 +649,29 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1A157D1D29CC72C4000E9EEB /* XCRemoteSwiftPackageReference "R" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mac-cain13/R.swift";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 7.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1A157D1E29CC72C4000E9EEB /* RswiftLibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1A157D1D29CC72C4000E9EEB /* XCRemoteSwiftPackageReference "R" */;
+			productName = RswiftLibrary;
+		};
+		1A157D2029CC72ED000E9EEB /* RswiftGenerateInternalResources */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "plugin:RswiftGenerateInternalResources";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1A50C61029CB51FA00B137E3 /* Project object */;
 }

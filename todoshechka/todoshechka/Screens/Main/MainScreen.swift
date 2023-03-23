@@ -16,16 +16,14 @@ struct MainScreen: View {
         }
         .padding(.horizontal, 24)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-        .background(
-            Color("colors/primary")
-        )
+        .background(R.color.primary.color)
     }
 }
 
 extension MainScreen {
     var topView: some View {
         HStack {
-            Color("colors/onPrimaryVariant2")
+            R.color.onPrimaryVariant2.color
                 .frame(width: 38, height: 38)
                 .mask(Circle())
             Spacer()
@@ -35,7 +33,7 @@ extension MainScreen {
     
     var welcomeMessage: some View {
         Text("Good Morning")
-            .foregroundColor(Color("colors/onPrimaryVariant1"))
+            .foregroundColor(R.color.onPrimaryVariant1.color)
             .font(.system(size: 74))
             .lineSpacing(0)
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -45,10 +43,10 @@ extension MainScreen {
         HStack {
             VStack(alignment: .leading) {
                 Text("Today's Monday")
-                    .foregroundColor(Color("colors/onPrimaryVariant3"))
+                    .foregroundColor(R.color.onPrimaryVariant3.color)
                     .font(.body)
                 Text("Dec 12, 2022")
-                    .foregroundColor(Color("colors/onPrimaryVariant4"))
+                    .foregroundColor(R.color.onPrimaryVariant4.color)
                     .font(.caption)
             }
             
@@ -56,10 +54,10 @@ extension MainScreen {
             
             VStack(alignment: .trailing) {
                 Text("75% Done")
-                    .foregroundColor(Color("colors/onPrimaryVariant3"))
+                    .foregroundColor(R.color.onPrimaryVariant3.color)
                     .font(.body)
                 Text("Completed Tasks")
-                    .foregroundColor(Color("colors/onPrimaryVariant4"))
+                    .foregroundColor(R.color.onPrimaryVariant4.color)
                     .font(.caption)
             }
         }
