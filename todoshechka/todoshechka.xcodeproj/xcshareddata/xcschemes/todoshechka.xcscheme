@@ -50,6 +50,17 @@
                ReferencedContainer = "container:todoshechka.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "1A157D5A29CDEC50000E9EEB"
+               BuildableName = "todoshechkaHostedTests.xctest"
+               BlueprintName = "todoshechkaHostedTests"
+               ReferencedContainer = "container:todoshechka.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

@@ -2,6 +2,7 @@
 //  Created on 24.03.2023.
 //
 
+@testable import todoshechka
 import XCTest
 
 final class MainScreenViewModelTests: XCTestCase {
