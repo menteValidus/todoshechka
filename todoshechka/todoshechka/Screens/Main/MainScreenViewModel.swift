@@ -15,6 +15,6 @@ final class MainScreenViewModel: ObservableObject {
     }
     
     func start() {
-        
+        welcomeMessage = R.string.localizable.welcome_good_morning()
     }
 }

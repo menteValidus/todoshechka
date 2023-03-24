@@ -12,6 +12,7 @@
 		1A157D2A29CD9072000E9EEB /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A157D2929CD9072000E9EEB /* Card.swift */; };
 		1A157D2D29CD9C88000E9EEB /* Callbacks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A157D2C29CD9C88000E9EEB /* Callbacks.swift */; };
 		1A157D3129CDDE5D000E9EEB /* MainScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A157D3029CDDE5D000E9EEB /* MainScreenViewModel.swift */; };
+		1A157D3F29CDE70E000E9EEB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1A157D3E29CDE70E000E9EEB /* Localizable.strings */; };
 		1A157D6429CDECA8000E9EEB /* MainScreenViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A50C62D29CB51FB00B137E3 /* MainScreenViewModelTests.swift */; };
 		1A157D6729CDED2A000E9EEB /* todoshechkaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A157D6629CDED2A000E9EEB /* todoshechkaTests.swift */; };
 		1A50C61C29CB51FA00B137E3 /* todoshechkaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A50C61B29CB51FA00B137E3 /* todoshechkaApp.swift */; };
