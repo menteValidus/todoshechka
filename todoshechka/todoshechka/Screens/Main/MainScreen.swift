@@ -5,6 +5,8 @@
 import SwiftUI
 
 struct MainScreen: View {
+    @ObservedObject var viewModel: MainScreenViewModel
+    
     var body: some View {
         ZStack(alignment: .bottom) {
             ScrollView {
@@ -25,6 +27,9 @@ struct MainScreen: View {
             
             fab
         }
+        .onAppear {
+            viewModel.start()
+        }
     }
 }
 
@@ -40,7 +45,7 @@ extension MainScreen {
     }
     
     var welcomeMessage: some View {
-        Text("Good Morning")
+        Text(viewModel.welcomeMessage)
             .foregroundColor(R.color.onPrimaryVariant1.color)
             .font(.system(size: 74))
             .lineSpacing(0)
@@ -98,7 +103,7 @@ extension MainScreen {
 
 struct MainScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        MainScreen()
+        MainScreen(viewModel: MainScreenViewModel())
             .preferredColorScheme(.dark)
     }
 }

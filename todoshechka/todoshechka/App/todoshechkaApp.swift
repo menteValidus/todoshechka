@@ -11,7 +11,7 @@ import SwiftUI
 struct todoshechkaApp: App {
     var body: some Scene {
         WindowGroup {
-            MainScreen()
+            MainScreen(viewModel: MainScreenViewModel())
                 .preferredColorScheme(.dark)
         }
     }
