@@ -126,6 +126,23 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		1A157D3929CDE5EA000E9EEB /* App */ = {
+			isa = PBXGroup;
+			children = (
+				1A50C61B29CB51FA00B137E3 /* todoshechkaApp.swift */,
+				1A50C62129CB51FB00B137E3 /* todoshechka.entitlements */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		1A157D3B29CDE603000E9EEB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1A50C61F29CB51FB00B137E3 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		1A50C60F29CB51FA00B137E3 = {
 			isa = PBXGroup;
 			children = (
@@ -149,12 +166,11 @@
 		1A50C61A29CB51FA00B137E3 /* todoshechka */ = {
 			isa = PBXGroup;
 			children = (
+				1A157D3929CDE5EA000E9EEB /* App */,
+				1A6161D629CB64F000C7E63B /* Screens */,
 				1A157D2B29CD9C63000E9EEB /* Utils */,
 				1A157D2329CC73D3000E9EEB /* Extensions */,
-				1A6161D629CB64F000C7E63B /* Screens */,
-				1A50C61B29CB51FA00B137E3 /* todoshechkaApp.swift */,
-				1A50C61F29CB51FB00B137E3 /* Assets.xcassets */,
-				1A50C62129CB51FB00B137E3 /* todoshechka.entitlements */,
+				1A157D3B29CDE603000E9EEB /* Resources */,
 				1A50C62229CB51FB00B137E3 /* Preview Content */,
 			);
 			path = todoshechka;
@@ -503,7 +519,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = todoshechka/todoshechka.entitlements;
+				CODE_SIGN_ENTITLEMENTS = todoshechka/App/todoshechka.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"todoshechka/Preview Content\"";
@@ -539,7 +555,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = todoshechka/todoshechka.entitlements;
+				CODE_SIGN_ENTITLEMENTS = todoshechka/App/todoshechka.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"todoshechka/Preview Content\"";
