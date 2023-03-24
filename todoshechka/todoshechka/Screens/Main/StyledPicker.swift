@@ -13,32 +13,35 @@ struct StyledPicker: View {
                         .padding(.horizontal, 8)
                         .padding(.vertical, 4)
                         .font(.body)
-                        .background(Color.white)
+                        .background(R.color.secondary2.color)
+                        .foregroundColor(R.color.onSecondary2.color)
                         .clipShape(Capsule())
                     Text("Tasks")
                         .font(.largeTitle.weight(.light))
-                        .foregroundColor(.blue)
+                        .foregroundColor(R.color.onPrimaryVariant1.color)
                 }
                 
                 Spacer()
                 
                 HStack {
                     Text("3")
-                        .foregroundColor(.gray)
+                        .foregroundColor(R.color.onPrimaryVariant4.color)
                         .padding(.horizontal, 8)
                         .padding(.vertical, 4)
                         .font(.body)
-                        .overlay(Capsule().stroke( Color.gray))
+                        .overlay(
+                            Capsule().stroke( R.color.onPrimaryVariant4.color)
+                        )
                     Text("Boards")
-                        .foregroundColor(.gray)
+                        .foregroundColor(R.color.onPrimaryVariant4.color)
                         .font(.largeTitle.weight(.light))
                 }
             }
             
             GeometryReader { geo in
                 ZStack(alignment: .leading) {
-                    Color.gray
-                    Color.white
+                    R.color.onPrimaryVariant4.color
+                    R.color.onPrimaryVariant3.color
                         .frame(width: geo.size.width / 2)
                 }
             }

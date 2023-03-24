@@ -39,6 +39,7 @@ struct Card: View {
                 Text(taskName)
                     .font(.largeTitle)
             }
+            .foregroundColor(R.color.tags.onAccent.color)
             .lineLimit(1)
             .padding(.top, 4)
             .padding(.bottom)

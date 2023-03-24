@@ -84,12 +84,12 @@ extension MainScreen {
     var fab: some View {
         Button(action: {}) {
             ZStack {
-                R.color.secondary.color
+                R.color.secondary1.color
                     .clipShape(Circle())
                 
                 Image(systemName: "plus")
                     .bold()
-                    .foregroundColor(R.color.onSecondary.color)
+                    .foregroundColor(R.color.onSecondary1.color)
             }
         }
         .frame(width: 80, height: 80)
@@ -99,5 +99,6 @@ extension MainScreen {
 struct MainScreenView_Previews: PreviewProvider {
     static var previews: some View {
         MainScreen()
+            .preferredColorScheme(.dark)
     }
 }
