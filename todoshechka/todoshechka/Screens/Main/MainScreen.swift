@@ -55,10 +55,10 @@ extension MainScreen {
     var summary: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text("Today's Monday")
+                Text(viewModel.selectedRelativeDate)
                     .foregroundColor(R.color.onPrimaryVariant3.color)
                     .font(.body)
-                Text("Dec 12, 2022")
+                Text(viewModel.selectedFormattedDate)
                     .foregroundColor(R.color.onPrimaryVariant4.color)
                     .font(.caption)
             }

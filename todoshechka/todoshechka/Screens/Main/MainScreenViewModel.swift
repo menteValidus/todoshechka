@@ -7,8 +7,18 @@ import Foundation
 final class MainScreenViewModel: ObservableObject {
     
     @Published private(set) var welcomeMessage: String = ""
+    @Published private(set) var selectedRelativeDate: String = ""
+    @Published private(set) var selectedFormattedDate: String = ""
     
     private let dateGenerator: DateGenerator
+    
+    private var dateFormatter: DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeStyle = .none
+        dateFormatter.dateStyle = .medium
+        
+        return dateFormatter
+    }
     
     init(dateGenerator: @escaping DateGenerator = Date.init) {
         self.dateGenerator = dateGenerator
@@ -16,5 +26,7 @@ final class MainScreenViewModel: ObservableObject {
     
     func start() {
         welcomeMessage = R.string.localizable.welcome_good_morning()
+        selectedRelativeDate = "Today's Monday"
+        selectedFormattedDate = dateFormatter.string(from: dateGenerator())
     }
 }

@@ -18,7 +18,7 @@ final class MainScreenViewModelTests: XCTestCase {
     }
     
     func testStart() throws {
-        let testDate = Calendar.current.today(hour: 8, minute: 0)
+        let testDate = Calendar.current.date(year: 2023, month: 3, day: 20, hour: 8, minute: 0)
         sut = .init(
             dateGenerator: {
                 return testDate!
@@ -28,11 +28,18 @@ final class MainScreenViewModelTests: XCTestCase {
         sut.start()
         
         XCTAssertEqual(R.string.localizable.welcome_good_morning(), sut.welcomeMessage)
+        XCTAssertEqual("Mar 20, 2023", sut.selectedFormattedDate)
+    }
+    
+    func testRelativeDateIsAssigned() {
+        sut.start()
+        
+        XCTAssertTrue(sut.selectedRelativeDate.contains("Today"))
     }
 }
 
 private extension Calendar {
-    func today(hour: Int, minute: Int) -> Date? {
-        date(from: DateComponents(year: 2023, month: 3, day: 24, hour: hour, minute: minute))
+    func date(year: Int, month: Int, day: Int, hour: Int, minute: Int) -> Date? {
+        date(from: DateComponents(year: year, month: month, day: day, hour: hour, minute: minute))
     }
 }
