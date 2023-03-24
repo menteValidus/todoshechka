@@ -6,21 +6,25 @@ import SwiftUI
 
 struct MainScreen: View {
     var body: some View {
-        ScrollView {
-            VStack {
-                topView
-                welcomeMessage
-                    .padding(.bottom)
-                summary
-                StyledPicker()
-                    .padding(.top)
-                taskCards
-                    .padding(.top)
+        ZStack(alignment: .bottom) {
+            ScrollView {
+                VStack {
+                    topView
+                    welcomeMessage
+                        .padding(.bottom)
+                    summary
+                    StyledPicker()
+                        .padding(.top)
+                    taskCards
+                        .padding(.top)
+                }
+                .padding(.horizontal, 24)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             }
-            .padding(.horizontal, 24)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+            .background(R.color.primary.color)
+            
+            fab
         }
-        .background(R.color.primary.color)
     }
 }
 
@@ -75,6 +79,20 @@ extension MainScreen {
             
             Card(taskName: "Task 1", boardName: "Myself", timeLeftText: "1h 30m", completed: false, backgroundColor: R.color.tags.accent3.color, onComplete: {})
         }
+    }
+    
+    var fab: some View {
+        Button(action: {}) {
+            ZStack {
+                R.color.secondary.color
+                    .clipShape(Circle())
+                
+                Image(systemName: "plus")
+                    .bold()
+                    .foregroundColor(R.color.onSecondary.color)
+            }
+        }
+        .frame(width: 80, height: 80)
     }
 }
 
