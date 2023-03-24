@@ -13,6 +13,7 @@
 		1A157D2D29CD9C88000E9EEB /* Callbacks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A157D2C29CD9C88000E9EEB /* Callbacks.swift */; };
 		1A157D3129CDDE5D000E9EEB /* MainScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A157D3029CDDE5D000E9EEB /* MainScreenViewModel.swift */; };
 		1A157D3529CDDEED000E9EEB /* MainScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A157D3029CDDE5D000E9EEB /* MainScreenViewModel.swift */; };
+		1A157D3729CDE566000E9EEB /* Callbacks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A157D2C29CD9C88000E9EEB /* Callbacks.swift */; };
 		1A50C61C29CB51FA00B137E3 /* todoshechkaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A50C61B29CB51FA00B137E3 /* todoshechkaApp.swift */; };
 		1A50C61E29CB51FA00B137E3 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A50C61D29CB51FA00B137E3 /* MainScreen.swift */; };
 		1A50C62029CB51FB00B137E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A50C61F29CB51FB00B137E3 /* Assets.xcassets */; };
@@ -355,6 +356,7 @@
 			files = (
 				1A50C62E29CB51FB00B137E3 /* MainScreenViewModelTests.swift in Sources */,
 				1A157D3529CDDEED000E9EEB /* MainScreenViewModel.swift in Sources */,
+				1A157D3729CDE566000E9EEB /* Callbacks.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,4 +6,15 @@ import Foundation
 
 final class MainScreenViewModel: ObservableObject {
     
+    @Published private(set) var welcomeMessage: String = ""
+    
+    private let dateGenerator: DateGenerator
+    
+    init(dateGenerator: @escaping DateGenerator = Date.init) {
+        self.dateGenerator = dateGenerator
+    }
+    
+    func start() {
+        
+    }
 }
