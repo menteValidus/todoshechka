@@ -27,7 +27,7 @@ final class MainScreenViewModelTests: XCTestCase {
         
         sut.start()
         
-        XCTAssertEqual("Good Morning", sut.welcomeMessage)
+        XCTAssertEqual(R.string.localizable.welcome_good_morning(), sut.welcomeMessage)
     }
 }
 
