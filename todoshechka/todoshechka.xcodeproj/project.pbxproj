@@ -11,11 +11,13 @@
 		1A157D2529CC73EA000E9EEB /* ColorResource+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A157D2429CC73EA000E9EEB /* ColorResource+SwiftUI.swift */; };
 		1A157D2A29CD9072000E9EEB /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A157D2929CD9072000E9EEB /* Card.swift */; };
 		1A157D2D29CD9C88000E9EEB /* Callbacks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A157D2C29CD9C88000E9EEB /* Callbacks.swift */; };
+		1A157D3129CDDE5D000E9EEB /* MainScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A157D3029CDDE5D000E9EEB /* MainScreenViewModel.swift */; };
+		1A157D3529CDDEED000E9EEB /* MainScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A157D3029CDDE5D000E9EEB /* MainScreenViewModel.swift */; };
 		1A50C61C29CB51FA00B137E3 /* todoshechkaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A50C61B29CB51FA00B137E3 /* todoshechkaApp.swift */; };
 		1A50C61E29CB51FA00B137E3 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A50C61D29CB51FA00B137E3 /* MainScreen.swift */; };
 		1A50C62029CB51FB00B137E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A50C61F29CB51FB00B137E3 /* Assets.xcassets */; };
 		1A50C62429CB51FB00B137E3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A50C62329CB51FB00B137E3 /* Preview Assets.xcassets */; };
-		1A50C62E29CB51FB00B137E3 /* todoshechkaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A50C62D29CB51FB00B137E3 /* todoshechkaTests.swift */; };
+		1A50C62E29CB51FB00B137E3 /* MainScreenViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A50C62D29CB51FB00B137E3 /* MainScreenViewModelTests.swift */; };
 		1A50C63829CB51FB00B137E3 /* todoshechkaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A50C63729CB51FB00B137E3 /* todoshechkaUITests.swift */; };
 		1A50C63A29CB51FB00B137E3 /* todoshechkaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A50C63929CB51FB00B137E3 /* todoshechkaUITestsLaunchTests.swift */; };
 		1A6161DC29CC62CC00C7E63B /* StyledPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6161DB29CC62CC00C7E63B /* StyledPicker.swift */; };
@@ -42,6 +44,7 @@
 		1A157D2429CC73EA000E9EEB /* ColorResource+SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ColorResource+SwiftUI.swift"; sourceTree = "<group>"; };
 		1A157D2929CD9072000E9EEB /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		1A157D2C29CD9C88000E9EEB /* Callbacks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Callbacks.swift; sourceTree = "<group>"; };
+		1A157D3029CDDE5D000E9EEB /* MainScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewModel.swift; sourceTree = "<group>"; };
 		1A50C61829CB51FA00B137E3 /* todoshechka.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = todoshechka.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A50C61B29CB51FA00B137E3 /* todoshechkaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = todoshechkaApp.swift; sourceTree = "<group>"; };
 		1A50C61D29CB51FA00B137E3 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
@@ -49,7 +52,7 @@
 		1A50C62129CB51FB00B137E3 /* todoshechka.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = todoshechka.entitlements; sourceTree = "<group>"; };
 		1A50C62329CB51FB00B137E3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1A50C62929CB51FB00B137E3 /* todoshechkaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = todoshechkaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1A50C62D29CB51FB00B137E3 /* todoshechkaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = todoshechkaTests.swift; sourceTree = "<group>"; };
+		1A50C62D29CB51FB00B137E3 /* MainScreenViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewModelTests.swift; sourceTree = "<group>"; };
 		1A50C63329CB51FB00B137E3 /* todoshechkaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = todoshechkaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A50C63729CB51FB00B137E3 /* todoshechkaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = todoshechkaUITests.swift; sourceTree = "<group>"; };
 		1A50C63929CB51FB00B137E3 /* todoshechkaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = todoshechkaUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -106,6 +109,22 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		1A157D3329CDDE92000E9EEB /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				1A157D3429CDDE98000E9EEB /* Main */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		1A157D3429CDDE98000E9EEB /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				1A50C62D29CB51FB00B137E3 /* MainScreenViewModelTests.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		1A50C60F29CB51FA00B137E3 = {
 			isa = PBXGroup;
 			children = (
@@ -151,7 +170,7 @@
 		1A50C62C29CB51FB00B137E3 /* todoshechkaTests */ = {
 			isa = PBXGroup;
 			children = (
-				1A50C62D29CB51FB00B137E3 /* todoshechkaTests.swift */,
+				1A157D3329CDDE92000E9EEB /* Screens */,
 			);
 			path = todoshechkaTests;
 			sourceTree = "<group>";
@@ -179,6 +198,7 @@
 			children = (
 				1A50C61D29CB51FA00B137E3 /* MainScreen.swift */,
 				1A6161DB29CC62CC00C7E63B /* StyledPicker.swift */,
+				1A157D3029CDDE5D000E9EEB /* MainScreenViewModel.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -258,7 +278,6 @@
 					};
 					1A50C62829CB51FB00B137E3 = {
 						CreatedOnToolsVersion = 14.2;
-						TestTargetID = 1A50C61729CB51FA00B137E3;
 					};
 					1A50C63229CB51FB00B137E3 = {
 						CreatedOnToolsVersion = 14.2;
@@ -321,6 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A50C61E29CB51FA00B137E3 /* MainScreen.swift in Sources */,
+				1A157D3129CDDE5D000E9EEB /* MainScreenViewModel.swift in Sources */,
 				1A6161DC29CC62CC00C7E63B /* StyledPicker.swift in Sources */,
 				1A157D2D29CD9C88000E9EEB /* Callbacks.swift in Sources */,
 				1A157D2A29CD9072000E9EEB /* Card.swift in Sources */,
@@ -333,7 +353,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A50C62E29CB51FB00B137E3 /* todoshechkaTests.swift in Sources */,
+				1A50C62E29CB51FB00B137E3 /* MainScreenViewModelTests.swift in Sources */,
+				1A157D3529CDDEED000E9EEB /* MainScreenViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -551,7 +572,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -565,7 +585,6 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/todoshechka.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/todoshechka";
 			};
 			name = Debug;
 		};
@@ -573,7 +592,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -587,7 +605,6 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/todoshechka.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/todoshechka";
 			};
 			name = Release;
 		};
