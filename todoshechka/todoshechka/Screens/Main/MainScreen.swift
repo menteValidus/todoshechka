@@ -6,16 +6,20 @@ import SwiftUI
 
 struct MainScreen: View {
     var body: some View {
-        VStack {
-            topView
-            welcomeMessage
-                .padding(.bottom)
-            summary
-            StyledPicker()
-                .padding(.top)
+        ScrollView {
+            VStack {
+                topView
+                welcomeMessage
+                    .padding(.bottom)
+                summary
+                StyledPicker()
+                    .padding(.top)
+                taskCards
+                    .padding(.top)
+            }
+            .padding(.horizontal, 24)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         }
-        .padding(.horizontal, 24)
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .background(R.color.primary.color)
     }
 }
@@ -60,6 +64,16 @@ extension MainScreen {
                     .foregroundColor(R.color.onPrimaryVariant4.color)
                     .font(.caption)
             }
+        }
+    }
+    
+    var taskCards: some View {
+        LazyVStack(spacing: 0) {
+            Card(taskName: "Task 1", boardName: "Myself", timeLeftText: "1h 30m", completed: false, backgroundColor: R.color.tags.accent1.color, onComplete: {})
+            
+            Card(taskName: "Task 1", boardName: "Myself", timeLeftText: "1h 30m", completed: false, backgroundColor: R.color.tags.accent2.color, onComplete: {})
+            
+            Card(taskName: "Task 1", boardName: "Myself", timeLeftText: "1h 30m", completed: false, backgroundColor: R.color.tags.accent3.color, onComplete: {})
         }
     }
 }

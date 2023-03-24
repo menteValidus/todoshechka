@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1A157D1F29CC72C4000E9EEB /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 1A157D1E29CC72C4000E9EEB /* RswiftLibrary */; };
 		1A157D2529CC73EA000E9EEB /* ColorResource+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A157D2429CC73EA000E9EEB /* ColorResource+SwiftUI.swift */; };
+		1A157D2A29CD9072000E9EEB /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A157D2929CD9072000E9EEB /* Card.swift */; };
+		1A157D2D29CD9C88000E9EEB /* Callbacks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A157D2C29CD9C88000E9EEB /* Callbacks.swift */; };
 		1A50C61C29CB51FA00B137E3 /* todoshechkaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A50C61B29CB51FA00B137E3 /* todoshechkaApp.swift */; };
 		1A50C61E29CB51FA00B137E3 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A50C61D29CB51FA00B137E3 /* MainScreen.swift */; };
 		1A50C62029CB51FB00B137E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A50C61F29CB51FB00B137E3 /* Assets.xcassets */; };
@@ -38,6 +40,8 @@
 
 /* Begin PBXFileReference section */
 		1A157D2429CC73EA000E9EEB /* ColorResource+SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ColorResource+SwiftUI.swift"; sourceTree = "<group>"; };
+		1A157D2929CD9072000E9EEB /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		1A157D2C29CD9C88000E9EEB /* Callbacks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Callbacks.swift; sourceTree = "<group>"; };
 		1A50C61829CB51FA00B137E3 /* todoshechka.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = todoshechka.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A50C61B29CB51FA00B137E3 /* todoshechkaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = todoshechkaApp.swift; sourceTree = "<group>"; };
 		1A50C61D29CB51FA00B137E3 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
@@ -86,6 +90,22 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		1A157D2629CD9058000E9EEB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1A157D2929CD9072000E9EEB /* Card.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1A157D2B29CD9C63000E9EEB /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				1A157D2C29CD9C88000E9EEB /* Callbacks.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		1A50C60F29CB51FA00B137E3 = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +129,7 @@
 		1A50C61A29CB51FA00B137E3 /* todoshechka */ = {
 			isa = PBXGroup;
 			children = (
+				1A157D2B29CD9C63000E9EEB /* Utils */,
 				1A157D2329CC73D3000E9EEB /* Extensions */,
 				1A6161D629CB64F000C7E63B /* Screens */,
 				1A50C61B29CB51FA00B137E3 /* todoshechkaApp.swift */,
@@ -148,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				1A6161D729CB65D200C7E63B /* Main */,
+				1A157D2629CD9058000E9EEB /* Views */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -300,6 +322,8 @@
 			files = (
 				1A50C61E29CB51FA00B137E3 /* MainScreen.swift in Sources */,
 				1A6161DC29CC62CC00C7E63B /* StyledPicker.swift in Sources */,
+				1A157D2D29CD9C88000E9EEB /* Callbacks.swift in Sources */,
+				1A157D2A29CD9072000E9EEB /* Card.swift in Sources */,
 				1A50C61C29CB51FA00B137E3 /* todoshechkaApp.swift in Sources */,
 				1A157D2529CC73EA000E9EEB /* ColorResource+SwiftUI.swift in Sources */,
 			);
