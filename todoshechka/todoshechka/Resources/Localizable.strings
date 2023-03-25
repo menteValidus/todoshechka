@@ -1,1 +1,5 @@
 "welcome_good_morning" = "Good Morning";
+
+"relative_date_today_template" = "Today's %@";
+"relative_date_yesterday_template" = "Yesterday's %@";
+"relative_date_tomorrow_template" = "Tomorrow's %@";
