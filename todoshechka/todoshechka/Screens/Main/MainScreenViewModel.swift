@@ -10,6 +10,11 @@ final class MainScreenViewModel: ObservableObject {
     @Published private(set) var selectedRelativeDate: String = ""
     @Published private(set) var selectedFormattedDate: String = ""
     
+    @Published private(set) var taskCards: [TaskCard] = []
+    
+    private var tasks: [Task] = []
+    private var boards: [Board] = []
+    
     private let dateGenerator: DateGenerator
     
     private var dateFormatter: DateFormatter {
@@ -24,11 +29,34 @@ final class MainScreenViewModel: ObservableObject {
         self.dateGenerator = dateGenerator
     }
     
-    func start() {
+    func load() {
         welcomeMessage = R.string.localizable.welcome_good_morning()
         
         let relativeWeekDayFormatter = RelativeWeekDayFormatter(todayGenerator: dateGenerator)
         selectedRelativeDate = relativeWeekDayFormatter.string(from: dateGenerator()) ?? ""
         selectedFormattedDate = dateFormatter.string(from: dateGenerator())
+        
+        loadTasks()
+    }
+    
+    private func loadTasks() {
+        tasks = [
+            .init(id: 1, name: "Task 1", board: Board(name: "Myself"), deadline: Date()),
+            .init(id: 2, name: "Task 2", board: Board(name: "Myself"), deadline: Date()),
+            .init(id: 3, name: "Task 3", board: Board(name: "Myself"), deadline: Date())
+        ]
+        
+        taskCards = tasks.map(mapTaskToCard)
+    }
+    
+    private func mapTaskToCard(_ task: Task) -> TaskCard {
+        TaskCard(
+            id: task.id,
+            name: task.name,
+            boardName: task.board.name,
+            remainingTime: "todo",
+            completed: task.completed,
+            tagColor: R.color.tags.accent1.color
+        )
     }
 }

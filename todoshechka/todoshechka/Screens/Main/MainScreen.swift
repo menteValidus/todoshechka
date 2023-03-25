@@ -28,7 +28,7 @@ struct MainScreen: View {
             fab
         }
         .onAppear {
-            viewModel.start()
+            viewModel.load()
         }
     }
 }
@@ -77,12 +77,17 @@ extension MainScreen {
     }
     
     var taskCards: some View {
-        LazyVStack(spacing: 0) {
-            Card(taskName: "Task 1", boardName: "Myself", timeLeftText: "1h 30m", completed: false, backgroundColor: R.color.tags.accent1.color, onComplete: {})
-            
-            Card(taskName: "Task 1", boardName: "Myself", timeLeftText: "1h 30m", completed: false, backgroundColor: R.color.tags.accent2.color, onComplete: {})
-            
-            Card(taskName: "Task 1", boardName: "Myself", timeLeftText: "1h 30m", completed: false, backgroundColor: R.color.tags.accent3.color, onComplete: {})
+        LazyVStack(spacing: 1) {
+            ForEach(viewModel.taskCards) { taskCard in
+                Card(
+                    taskName: taskCard.name,
+                    boardName: taskCard.boardName,
+                    timeLeftText: taskCard.remainingTime,
+                    completed: taskCard.completed,
+                    backgroundColor: taskCard.tagColor,
+                    onComplete: {}
+                )
+            }
         }
     }
     
