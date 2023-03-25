@@ -26,7 +26,9 @@ final class MainScreenViewModel: ObservableObject {
     
     func start() {
         welcomeMessage = R.string.localizable.welcome_good_morning()
-        selectedRelativeDate = "Today's Monday"
+        
+        let relativeWeekDayFormatter = RelativeWeekDayFormatter(todayGenerator: dateGenerator)
+        selectedRelativeDate = relativeWeekDayFormatter.string(from: dateGenerator()) ?? ""
         selectedFormattedDate = dateFormatter.string(from: dateGenerator())
     }
 }
