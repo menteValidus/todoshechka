@@ -15,6 +15,9 @@
 		1A157D3F29CDE70E000E9EEB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1A157D3E29CDE70E000E9EEB /* Localizable.strings */; };
 		1A157D6429CDECA8000E9EEB /* MainScreenViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A50C62D29CB51FB00B137E3 /* MainScreenViewModelTests.swift */; };
 		1A157D6729CDED2A000E9EEB /* todoshechkaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A157D6629CDED2A000E9EEB /* todoshechkaTests.swift */; };
+		1A157D6E29CE1077000E9EEB /* RelativeWeekDayFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A157D6D29CE1077000E9EEB /* RelativeWeekDayFormatter.swift */; };
+		1A157D7429CED6E6000E9EEB /* RelativeWeekDayFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A157D7329CED6E6000E9EEB /* RelativeWeekDayFormatterTests.swift */; };
+		1A157D7829CED959000E9EEB /* Calendar+createDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A157D7729CED959000E9EEB /* Calendar+createDate.swift */; };
 		1A50C61C29CB51FA00B137E3 /* todoshechkaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A50C61B29CB51FA00B137E3 /* todoshechkaApp.swift */; };
 		1A50C61E29CB51FA00B137E3 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A50C61D29CB51FA00B137E3 /* MainScreen.swift */; };
 		1A50C62029CB51FB00B137E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A50C61F29CB51FB00B137E3 /* Assets.xcassets */; };
@@ -47,6 +50,9 @@
 		1A157D3E29CDE70E000E9EEB /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		1A157D5B29CDEC50000E9EEB /* todoshechkaHostedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = todoshechkaHostedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A157D6629CDED2A000E9EEB /* todoshechkaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = todoshechkaTests.swift; sourceTree = "<group>"; };
+		1A157D6D29CE1077000E9EEB /* RelativeWeekDayFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelativeWeekDayFormatter.swift; sourceTree = "<group>"; };
+		1A157D7329CED6E6000E9EEB /* RelativeWeekDayFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelativeWeekDayFormatterTests.swift; sourceTree = "<group>"; };
+		1A157D7729CED959000E9EEB /* Calendar+createDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+createDate.swift"; sourceTree = "<group>"; };
 		1A50C61829CB51FA00B137E3 /* todoshechka.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = todoshechka.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A50C61B29CB51FA00B137E3 /* todoshechkaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = todoshechkaApp.swift; sourceTree = "<group>"; };
 		1A50C61D29CB51FA00B137E3 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
@@ -103,6 +109,7 @@
 		1A157D2B29CD9C63000E9EEB /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				1A157D6C29CE104F000E9EEB /* Formatters */,
 				1A157D2C29CD9C88000E9EEB /* Callbacks.swift */,
 			);
 			path = Utils;
@@ -146,8 +153,42 @@
 			isa = PBXGroup;
 			children = (
 				1A157D3329CDDE92000E9EEB /* Screens */,
+				1A157D7129CED6BE000E9EEB /* Utils */,
+				1A157D7629CED938000E9EEB /* TestUtils */,
 			);
 			path = todoshechkaHostedTests;
+			sourceTree = "<group>";
+		};
+		1A157D6C29CE104F000E9EEB /* Formatters */ = {
+			isa = PBXGroup;
+			children = (
+				1A157D6D29CE1077000E9EEB /* RelativeWeekDayFormatter.swift */,
+			);
+			path = Formatters;
+			sourceTree = "<group>";
+		};
+		1A157D7129CED6BE000E9EEB /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				1A157D7229CED6C4000E9EEB /* Formatters */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		1A157D7229CED6C4000E9EEB /* Formatters */ = {
+			isa = PBXGroup;
+			children = (
+				1A157D7329CED6E6000E9EEB /* RelativeWeekDayFormatterTests.swift */,
+			);
+			path = Formatters;
+			sourceTree = "<group>";
+		};
+		1A157D7629CED938000E9EEB /* TestUtils */ = {
+			isa = PBXGroup;
+			children = (
+				1A157D7729CED959000E9EEB /* Calendar+createDate.swift */,
+			);
+			path = TestUtils;
 			sourceTree = "<group>";
 		};
 		1A50C60F29CB51FA00B137E3 = {
@@ -356,7 +397,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A157D7429CED6E6000E9EEB /* RelativeWeekDayFormatterTests.swift in Sources */,
 				1A157D6429CDECA8000E9EEB /* MainScreenViewModelTests.swift in Sources */,
+				1A157D7829CED959000E9EEB /* Calendar+createDate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,6 +410,7 @@
 				1A50C61E29CB51FA00B137E3 /* MainScreen.swift in Sources */,
 				1A157D3129CDDE5D000E9EEB /* MainScreenViewModel.swift in Sources */,
 				1A6161DC29CC62CC00C7E63B /* StyledPicker.swift in Sources */,
+				1A157D6E29CE1077000E9EEB /* RelativeWeekDayFormatter.swift in Sources */,
 				1A157D2D29CD9C88000E9EEB /* Callbacks.swift in Sources */,
 				1A157D2A29CD9072000E9EEB /* Card.swift in Sources */,
 				1A50C61C29CB51FA00B137E3 /* todoshechkaApp.swift in Sources */,

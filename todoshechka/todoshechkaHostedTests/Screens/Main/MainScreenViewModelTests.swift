@@ -17,7 +17,7 @@ final class MainScreenViewModelTests: XCTestCase {
         sut = nil
     }
     
-    func testStart() throws {
+    func testStart() {
         let testDate = Calendar.current.date(year: 2023, month: 3, day: 20, hour: 8, minute: 0)
         sut = .init(
             dateGenerator: {
@@ -35,11 +35,5 @@ final class MainScreenViewModelTests: XCTestCase {
         sut.start()
         
         XCTAssertTrue(sut.selectedRelativeDate.contains("Today"))
-    }
-}
-
-private extension Calendar {
-    func date(year: Int, month: Int, day: Int, hour: Int, minute: Int) -> Date? {
-        date(from: DateComponents(year: year, month: month, day: day, hour: hour, minute: minute))
     }
 }
