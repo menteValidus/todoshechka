@@ -10,7 +10,7 @@ final class MainScreenViewModelTests: XCTestCase {
     var sut: MainScreenViewModel!
     
     override func setUp() {
-        sut = .init()
+        sut = .init(createTaskButtonTapped: {})
     }
     
     override func tearDown() {
@@ -22,7 +22,8 @@ final class MainScreenViewModelTests: XCTestCase {
         sut = .init(
             dateGenerator: {
                 return testDate!
-            }
+            },
+            createTaskButtonTapped: {}
         )
         
         sut.load()
@@ -35,5 +36,18 @@ final class MainScreenViewModelTests: XCTestCase {
         sut.load()
         
         XCTAssertTrue(sut.selectedRelativeDate.contains("Today"))
+    }
+    
+    func testCreateTaskActionIsTriggered() {
+        let expectation = XCTestExpectation()
+        sut = .init(
+            createTaskButtonTapped: {
+                expectation.fulfill()
+            }
+        )
+        
+        sut.createTask()
+        
+        wait(for: [expectation], timeout: 0.001)
     }
 }

@@ -92,7 +92,7 @@ extension MainScreen {
     }
     
     var fab: some View {
-        Button(action: {}) {
+        Button(action: viewModel.createTask) {
             ZStack {
                 R.color.secondary1.color
                     .clipShape(Circle())
@@ -108,7 +108,7 @@ extension MainScreen {
 
 struct MainScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        MainScreen(viewModel: MainScreenViewModel())
+        MainScreen(viewModel: MainScreenViewModel(createTaskButtonTapped: {}))
             .preferredColorScheme(.dark)
     }
 }

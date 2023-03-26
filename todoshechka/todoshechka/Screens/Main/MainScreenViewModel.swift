@@ -17,6 +17,8 @@ final class MainScreenViewModel: ObservableObject {
     
     private let dateGenerator: DateGenerator
     
+    private let createTaskButtonTapped: VoidCallback
+    
     private var dateFormatter: DateFormatter {
         let dateFormatter = DateFormatter()
         dateFormatter.timeStyle = .none
@@ -25,8 +27,12 @@ final class MainScreenViewModel: ObservableObject {
         return dateFormatter
     }
     
-    init(dateGenerator: @escaping DateGenerator = Date.init) {
+    init(
+        dateGenerator: @escaping DateGenerator = Date.init,
+        createTaskButtonTapped: @escaping VoidCallback
+    ) {
         self.dateGenerator = dateGenerator
+        self.createTaskButtonTapped = createTaskButtonTapped
     }
     
     func load() {
@@ -37,6 +43,10 @@ final class MainScreenViewModel: ObservableObject {
         selectedFormattedDate = dateFormatter.string(from: dateGenerator())
         
         loadTasks()
+    }
+    
+    func createTask() {
+        createTaskButtonTapped()
     }
     
     private func loadTasks() {

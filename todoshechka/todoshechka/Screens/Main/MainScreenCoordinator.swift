@@ -17,6 +17,6 @@ private final class MainScreenCoordinatorObject: ObservableObject {
     @Published private(set) var mainScreenViewModel: MainScreenViewModel
     
     init() {
-        mainScreenViewModel = .init() // Pass action with self
+        mainScreenViewModel = .init(createTaskButtonTapped: {}) // Pass action with self
     }
 }
