@@ -21,6 +21,8 @@
 		1A157D7B29CF32B8000E9EEB /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A157D7A29CF32B8000E9EEB /* Task.swift */; };
 		1A157D7E29CF3359000E9EEB /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A157D7D29CF3359000E9EEB /* Board.swift */; };
 		1A157D8129CF3E4B000E9EEB /* TaskCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A157D8029CF3E4B000E9EEB /* TaskCard.swift */; };
+		1A157D8429D04956000E9EEB /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A157D8329D04956000E9EEB /* AppCoordinator.swift */; };
+		1A157D8829D04A0F000E9EEB /* MainScreenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A157D8729D04A0F000E9EEB /* MainScreenCoordinator.swift */; };
 		1A50C61C29CB51FA00B137E3 /* todoshechkaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A50C61B29CB51FA00B137E3 /* todoshechkaApp.swift */; };
 		1A50C61E29CB51FA00B137E3 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A50C61D29CB51FA00B137E3 /* MainScreen.swift */; };
 		1A50C62029CB51FB00B137E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A50C61F29CB51FB00B137E3 /* Assets.xcassets */; };
@@ -59,6 +61,8 @@
 		1A157D7A29CF32B8000E9EEB /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		1A157D7D29CF3359000E9EEB /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		1A157D8029CF3E4B000E9EEB /* TaskCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCard.swift; sourceTree = "<group>"; };
+		1A157D8329D04956000E9EEB /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		1A157D8729D04A0F000E9EEB /* MainScreenCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenCoordinator.swift; sourceTree = "<group>"; };
 		1A50C61829CB51FA00B137E3 /* todoshechka.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = todoshechka.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A50C61B29CB51FA00B137E3 /* todoshechkaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = todoshechkaApp.swift; sourceTree = "<group>"; };
 		1A50C61D29CB51FA00B137E3 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
@@ -141,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				1A50C61B29CB51FA00B137E3 /* todoshechkaApp.swift */,
+				1A157D8329D04956000E9EEB /* AppCoordinator.swift */,
 				1A50C62129CB51FB00B137E3 /* todoshechka.entitlements */,
 			);
 			path = App;
@@ -214,6 +219,14 @@
 			path = Entities;
 			sourceTree = "<group>";
 		};
+		1A157D8629D049F0000E9EEB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1A6161DB29CC62CC00C7E63B /* StyledPicker.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		1A50C60F29CB51FA00B137E3 = {
 			isa = PBXGroup;
 			children = (
@@ -277,9 +290,10 @@
 		1A6161D729CB65D200C7E63B /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				1A157D8629D049F0000E9EEB /* Views */,
 				1A50C61D29CB51FA00B137E3 /* MainScreen.swift */,
-				1A6161DB29CC62CC00C7E63B /* StyledPicker.swift */,
 				1A157D3029CDDE5D000E9EEB /* MainScreenViewModel.swift */,
+				1A157D8729D04A0F000E9EEB /* MainScreenCoordinator.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -432,6 +446,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A157D8429D04956000E9EEB /* AppCoordinator.swift in Sources */,
 				1A50C61E29CB51FA00B137E3 /* MainScreen.swift in Sources */,
 				1A157D3129CDDE5D000E9EEB /* MainScreenViewModel.swift in Sources */,
 				1A157D7E29CF3359000E9EEB /* Board.swift in Sources */,
@@ -442,6 +457,7 @@
 				1A157D2A29CD9072000E9EEB /* Card.swift in Sources */,
 				1A50C61C29CB51FA00B137E3 /* todoshechkaApp.swift in Sources */,
 				1A157D7B29CF32B8000E9EEB /* Task.swift in Sources */,
+				1A157D8829D04A0F000E9EEB /* MainScreenCoordinator.swift in Sources */,
 				1A157D2529CC73EA000E9EEB /* ColorResource+SwiftUI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
