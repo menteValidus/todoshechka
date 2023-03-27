@@ -6,6 +6,8 @@ import SwiftUI
 
 struct AppCoordinatorView: View {
     var body: some View {
-        MainScreenCoordinatorView()
+        NavigationStack {
+            MainScreenCoordinatorView()
+        }
     }
 }

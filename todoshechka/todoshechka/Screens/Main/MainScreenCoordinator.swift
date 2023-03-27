@@ -10,13 +10,28 @@ struct MainScreenCoordinatorView: View {
     
     var body: some View {
         MainScreen(viewModel: object.mainScreenViewModel)
+            .navigationDestination(
+                object.createTaskViewModel,
+                onDisappear: object.navigatedBackFromCreateTask
+            ) {
+                CreateTaskCoordinatorView()
+            }
     }
 }
 
 private final class MainScreenCoordinatorObject: ObservableObject {
-    @Published private(set) var mainScreenViewModel: MainScreenViewModel
+    @Published private(set) var mainScreenViewModel: MainScreenViewModel!
+    @Published private(set) var createTaskViewModel: CreateTaskViewModel?
     
     init() {
-        mainScreenViewModel = .init(createTaskButtonTapped: {}) // Pass action with self
+        mainScreenViewModel = .init(createTaskButtonTapped: navigateToCreateTask) // Pass action with self
+    }
+    
+    func navigatedBackFromCreateTask() {
+        createTaskViewModel = nil
+    }
+    
+    private func navigateToCreateTask() {
+        createTaskViewModel = .init()
     }
 }
