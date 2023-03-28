@@ -92,16 +92,11 @@ extension MainScreen {
     }
     
     var fab: some View {
-        Button(action: viewModel.createTask) {
-            ZStack {
-                R.color.secondary1.color
-                    .clipShape(Circle())
-                
-                Image(systemName: "plus")
-                    .bold()
-                    .foregroundColor(R.color.onSecondary1.color)
-            }
-        }
+        CircleButton(
+            icon: Image(systemName: "plus"),
+            backgroundColor: R.color.secondary1.color,
+            foregroundColor: R.color.onSecondary1.color
+        )
         .frame(width: 80, height: 80)
     }
 }
