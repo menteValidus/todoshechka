@@ -4,6 +4,8 @@
 
 import Foundation
 
-final class CreateTaskViewModel: ObservableObject {
-    
+extension CreateTask {
+    final class ViewModel: ObservableObject {
+        
+    }
 }

@@ -4,15 +4,23 @@
 
 import SwiftUI
 
-struct CreateTaskCoordinatorView: View {
-    @StateObject
-    private var object = CreateTaskCoordinatorObject()
-    
-    var body: some View {
-        CreateTask()
+extension CreateTask {
+    struct CoordinatorView: View {
+        @StateObject
+        private var object = CoordinatorObject()
+        
+        var body: some View {
+            CreateTask(viewModel: object.viewModel)
+        }
     }
 }
 
-private final class CreateTaskCoordinatorObject: ObservableObject {
-    
+fileprivate extension CreateTask {
+    private final class CoordinatorObject: ObservableObject {
+        @Published private(set) var viewModel: ViewModel
+        
+        init() {
+            viewModel = .init()
+        }
+    }
 }

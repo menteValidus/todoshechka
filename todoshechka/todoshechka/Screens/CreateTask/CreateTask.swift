@@ -9,6 +9,8 @@ struct CreateTask: View {
         case title, description
     }
     
+    @ObservedObject var viewModel: ViewModel
+    
     @Environment(\.dismiss) var dismiss
     @FocusState private var focusedField: FocusedField?
     
@@ -165,6 +167,6 @@ private extension CreateTask {
 
 struct CreateTask_Previews: PreviewProvider {
     static var previews: some View {
-        CreateTask()
+        CreateTask(viewModel: .init())
     }
 }

@@ -14,7 +14,7 @@ struct MainScreenCoordinatorView: View {
                 object.createTaskViewModel,
                 onDismiss: object.navigatedBackFromCreateTask,
                 content: {
-                    CreateTaskCoordinatorView()
+                    CreateTask.CoordinatorView()
                 }
             )
     }
@@ -22,7 +22,7 @@ struct MainScreenCoordinatorView: View {
 
 private final class MainScreenCoordinatorObject: ObservableObject {
     @Published private(set) var mainScreenViewModel: MainScreenViewModel!
-    @Published private(set) var createTaskViewModel: CreateTaskViewModel?
+    @Published private(set) var createTaskViewModel: CreateTask.ViewModel?
     
     init() {
         mainScreenViewModel = .init(createTaskButtonTapped: navigateToCreateTask) // Pass action with self
