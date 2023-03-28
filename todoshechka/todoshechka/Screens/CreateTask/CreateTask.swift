@@ -87,26 +87,17 @@ private extension CreateTask {
     var boards: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
-                BoardTag(
-                    name: "Board 2",
-                    color: R.color.tags.accent2.color,
-                    selected: true,
-                    action: {}
-                )
-                
-                BoardTag(
-                    name: "Board 1",
-                    color: R.color.tags.accent1.color,
-                    action: {}
-                )
-                
-                BoardTag(
-                    name: "Board 3",
-                    color: R.color.tags.accent3.color,
-                    action: {}
-                )
-                
+                ForEach(viewModel.boardTags) { model in
+                    BoardTag(
+                        model: model,
+                        selected: model.id == viewModel.selectedBoardId,
+                        action: {}
+                    )
+                }
             }
+        }
+        .onAppear {
+            viewModel.load()
         }
     }
     
