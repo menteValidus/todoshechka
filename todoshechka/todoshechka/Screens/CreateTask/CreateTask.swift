@@ -87,20 +87,20 @@ private extension CreateTask {
     var boards: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
-                boardItem(
+                BoardTag(
                     name: "Board 2",
                     color: R.color.tags.accent2.color,
                     selected: true,
                     action: {}
                 )
                 
-                boardItem(
+                BoardTag(
                     name: "Board 1",
                     color: R.color.tags.accent1.color,
                     action: {}
                 )
                 
-                boardItem(
+                BoardTag(
                     name: "Board 3",
                     color: R.color.tags.accent3.color,
                     action: {}
@@ -132,34 +132,6 @@ private extension CreateTask {
                         .font(.subheadline.bold())
                 }
             }
-        }
-        .foregroundColor(R.color.tags.onAccent.color)
-    }
-    
-    func boardItem(
-        name: String,
-        color: Color,
-        selected: Bool = false,
-        action: @escaping VoidCallback
-    ) -> some View {
-        Button(action: action) {
-            HStack {
-                if selected {
-                    Image(systemName: "checkmark")
-                }
-                Text(name)
-                    .font(.body)
-            }
-                .padding(10)
-                .overlay(
-                    Capsule()
-                        .stroke( R.color.tags.onAccent.color, lineWidth: 2)
-                )
-                .background(
-                    color
-                        .clipShape(Capsule())
-                )
-                .padding(2)
         }
         .foregroundColor(R.color.tags.onAccent.color)
     }
