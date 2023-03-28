@@ -8,9 +8,10 @@ struct CircleButton: View {
     var icon: Image
     var backgroundColor: Color
     var foregroundColor: Color
+    var action: VoidCallback
     
     var body: some View {
-        Button(action: {}) {
+        Button(action: action) {
             ZStack {
                 backgroundColor
                     .clipShape(Circle())
@@ -29,7 +30,8 @@ struct CircleButton_Previews: PreviewProvider {
         CircleButton(
             icon: Image(systemName: "checkmark"),
             backgroundColor: .accentColor,
-            foregroundColor: .white
+            foregroundColor: .white,
+            action: {}
         )
         .previewLayout(.sizeThatFits)
     }

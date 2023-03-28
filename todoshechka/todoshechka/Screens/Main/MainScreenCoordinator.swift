@@ -10,12 +10,18 @@ struct MainScreenCoordinatorView: View {
     
     var body: some View {
         MainScreen(viewModel: object.mainScreenViewModel)
-            .navigationDestination(
-                object.createTaskViewModel,
-                onDisappear: object.navigatedBackFromCreateTask
-            ) {
-                CreateTaskCoordinatorView()
-            }
+            .fullScreenCover(
+                isPresented: .init(
+                    get: {
+                        object.createTaskViewModel != nil
+                    },
+                    set: { _ in }
+                ),
+                onDismiss: object.navigatedBackFromCreateTask,
+                content: {
+                    CreateTaskCoordinatorView()
+                }
+            )
     }
 }
 

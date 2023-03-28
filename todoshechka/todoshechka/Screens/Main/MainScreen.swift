@@ -95,7 +95,8 @@ extension MainScreen {
         CircleButton(
             icon: Image(systemName: "plus"),
             backgroundColor: R.color.secondary1.color,
-            foregroundColor: R.color.onSecondary1.color
+            foregroundColor: R.color.onSecondary1.color,
+            action: viewModel.createTask
         )
         .frame(width: 80, height: 80)
     }
