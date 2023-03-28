@@ -1,5 +1,9 @@
 "welcome_good_morning" = "Good Morning";
 
+"create_task_title_placeholder" = "Task Name";
+"create_task_deadline" = "Deadline";
+"create_task_description_placeholder" = "Additional description";
+
 "relative_date_today_template" = "Today's %@";
 "relative_date_yesterday_template" = "Yesterday's %@";
 "relative_date_tomorrow_template" = "Tomorrow's %@";

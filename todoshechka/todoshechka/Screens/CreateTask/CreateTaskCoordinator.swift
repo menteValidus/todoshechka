@@ -9,7 +9,7 @@ struct CreateTaskCoordinatorView: View {
     private var object = CreateTaskCoordinatorObject()
     
     var body: some View {
-        R.color.tags.accent1.color
+        CreateTask()
     }
 }
 
