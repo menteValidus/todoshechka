@@ -11,8 +11,7 @@ struct MainScreenCoordinatorView: View {
     var body: some View {
         MainScreen(viewModel: object.mainScreenViewModel)
             .fullScreenCover(
-                object.createTaskViewModel,
-                onDismiss: object.navigatedBackFromCreateTask,
+                isPresented: $object.createTaskAppears,
                 content: {
                     CreateTask.CoordinatorView()
                 }
@@ -22,17 +21,14 @@ struct MainScreenCoordinatorView: View {
 
 private final class MainScreenCoordinatorObject: ObservableObject {
     @Published private(set) var mainScreenViewModel: MainScreenViewModel!
-    @Published private(set) var createTaskViewModel: CreateTask.ViewModel?
+    
+    @Published var createTaskAppears = false
     
     init() {
         mainScreenViewModel = .init(createTaskButtonTapped: navigateToCreateTask) // Pass action with self
     }
     
-    func navigatedBackFromCreateTask() {
-        createTaskViewModel = nil
-    }
-    
     private func navigateToCreateTask() {
-        createTaskViewModel = .init()
+        createTaskAppears = true
     }
 }
