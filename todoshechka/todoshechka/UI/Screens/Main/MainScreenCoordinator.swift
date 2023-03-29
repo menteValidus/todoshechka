@@ -25,7 +25,7 @@ private final class MainScreenCoordinatorObject: ObservableObject {
     @Published var createTaskAppears = false
     
     init() {
-        mainScreenViewModel = .init(createTaskButtonTapped: navigateToCreateTask) // Pass action with self
+        mainScreenViewModel = .init(createTaskButtonTapped: navigateToCreateTask)
     }
     
     private func navigateToCreateTask() {
