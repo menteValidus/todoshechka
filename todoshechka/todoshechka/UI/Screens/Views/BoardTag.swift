@@ -34,7 +34,7 @@ struct BoardTag: View {
 }
 
 extension BoardTag {
-    struct Model: Identifiable {
+    struct Model: Identifiable, Equatable {
         let id: Int
         let name: String
         let color: Color
