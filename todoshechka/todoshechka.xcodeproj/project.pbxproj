@@ -27,6 +27,8 @@
 		1A157D9529D076DE000E9EEB /* CreateTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A157D9429D076DE000E9EEB /* CreateTaskViewModel.swift */; };
 		1A157D9A29D2E09E000E9EEB /* CreateTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A157D9929D2E09E000E9EEB /* CreateTask.swift */; };
 		1A157D9D29D2F5BA000E9EEB /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A157D9C29D2F5BA000E9EEB /* CircleButton.swift */; };
+		1A22EBF229D4506400F50DA2 /* TagColorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A22EBF129D4506400F50DA2 /* TagColorProvider.swift */; };
+		1A22EBF529D450FF00F50DA2 /* ProviderModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A22EBF429D450FF00F50DA2 /* ProviderModule.swift */; };
 		1A50C61C29CB51FA00B137E3 /* todoshechkaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A50C61B29CB51FA00B137E3 /* todoshechkaApp.swift */; };
 		1A50C61E29CB51FA00B137E3 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A50C61D29CB51FA00B137E3 /* MainScreen.swift */; };
 		1A50C62029CB51FB00B137E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A50C61F29CB51FB00B137E3 /* Assets.xcassets */; };
@@ -78,6 +80,8 @@
 		1A157D9429D076DE000E9EEB /* CreateTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskViewModel.swift; sourceTree = "<group>"; };
 		1A157D9929D2E09E000E9EEB /* CreateTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTask.swift; sourceTree = "<group>"; };
 		1A157D9C29D2F5BA000E9EEB /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
+		1A22EBF129D4506400F50DA2 /* TagColorProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagColorProvider.swift; sourceTree = "<group>"; };
+		1A22EBF429D450FF00F50DA2 /* ProviderModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderModule.swift; sourceTree = "<group>"; };
 		1A50C61829CB51FA00B137E3 /* todoshechka.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = todoshechka.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A50C61B29CB51FA00B137E3 /* todoshechkaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = todoshechkaApp.swift; sourceTree = "<group>"; };
 		1A50C61D29CB51FA00B137E3 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
@@ -262,6 +266,14 @@
 			path = CreateTask;
 			sourceTree = "<group>";
 		};
+		1A22EBF029D4505600F50DA2 /* Provider */ = {
+			isa = PBXGroup;
+			children = (
+				1A22EBF129D4506400F50DA2 /* TagColorProvider.swift */,
+			);
+			path = Provider;
+			sourceTree = "<group>";
+		};
 		1A50C60F29CB51FA00B137E3 = {
 			isa = PBXGroup;
 			children = (
@@ -316,6 +328,7 @@
 		1A5E873129D427990012ACD7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1A22EBF029D4505600F50DA2 /* Provider */,
 				1A5E873229D427A50012ACD7 /* Repository */,
 			);
 			path = Models;
@@ -345,6 +358,7 @@
 				1A5E873829D42E1C0012ACD7 /* RepositoryModule.swift */,
 				1AE978B229D43C6F00AA62BB /* ViewModelModule.swift */,
 				1AE978B429D43C7C00AA62BB /* CoordinatorModule.swift */,
+				1A22EBF429D450FF00F50DA2 /* ProviderModule.swift */,
 			);
 			path = DI;
 			sourceTree = "<group>";
@@ -533,6 +547,7 @@
 				1A157D8129CF3E4B000E9EEB /* TaskCard.swift in Sources */,
 				1AE978B129D4399F00AA62BB /* Container.swift in Sources */,
 				1A157D8D29D04DD2000E9EEB /* CreateTaskCoordinator.swift in Sources */,
+				1A22EBF529D450FF00F50DA2 /* ProviderModule.swift in Sources */,
 				1A157D9529D076DE000E9EEB /* CreateTaskViewModel.swift in Sources */,
 				1A5E872929D33F390012ACD7 /* BoardTag.swift in Sources */,
 				1A6161DC29CC62CC00C7E63B /* StyledPicker.swift in Sources */,
@@ -543,6 +558,7 @@
 				1A157D7B29CF32B8000E9EEB /* Task.swift in Sources */,
 				1A157D8829D04A0F000E9EEB /* MainScreenCoordinator.swift in Sources */,
 				1A157D2529CC73EA000E9EEB /* ColorResource+SwiftUI.swift in Sources */,
+				1A22EBF229D4506400F50DA2 /* TagColorProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

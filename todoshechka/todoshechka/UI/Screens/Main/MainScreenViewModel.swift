@@ -13,7 +13,7 @@ extension MainScreen {
         
         @Published private(set) var taskCards: [TaskCard] = []
         
-        private var tasks: [Task] = []
+        private var tasks: [Todo.Task] = []
         private var boards: [Board] = []
         
         private let dateGenerator: DateGenerator
@@ -60,7 +60,7 @@ extension MainScreen {
             taskCards = tasks.map(mapTaskToCard)
         }
         
-        private func mapTaskToCard(_ task: Task) -> TaskCard {
+        private func mapTaskToCard(_ task: Todo.Task) -> TaskCard {
             TaskCard(
                 id: task.id,
                 name: task.name,

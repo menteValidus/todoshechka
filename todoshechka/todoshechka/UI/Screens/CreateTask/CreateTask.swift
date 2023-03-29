@@ -130,6 +130,6 @@ private extension CreateTask {
 
 struct CreateTask_Previews: PreviewProvider {
     static var previews: some View {
-        CreateTask(viewModel: .init())
+        CreateTask(viewModel: Container.shared.createTaskViewModel)
     }
 }

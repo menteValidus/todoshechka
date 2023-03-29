@@ -10,7 +10,10 @@ final class CreateTaskViewModelTests: XCTestCase {
     var sut: CreateTask.ViewModel!
     
     override func setUp() {
-        sut = .init()
+        sut = CreateTask.ViewModel(
+            boardsRepository: Container.shared.boardRepository,
+            tagColorProvider: Container.shared.tagColorProvider
+        )
     }
     
     override func tearDown() {

@@ -4,7 +4,10 @@
 
 extension Container {
     var createTaskViewModel: CreateTask.ViewModel {
-        .init()
+        .init(
+            boardsRepository: self.boardRepository,
+            tagColorProvider: self.tagColorProvider
+        )
     }
     
     var mainScreenViewModelFactory: MainScreen.ViewModel.InjectedFactory {

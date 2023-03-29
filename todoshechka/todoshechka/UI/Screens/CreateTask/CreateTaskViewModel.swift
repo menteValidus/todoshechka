@@ -9,14 +9,40 @@ extension CreateTask {
         @Published private(set) var boardTags: [BoardTag.Model] = []
         @Published private(set) var selectedBoardId: Int?
         
+        private let boardsRepository: IBoardsRepository
+        private let tagColorProvider: ITagColorProvider
+        
+        init(
+            boardsRepository: IBoardsRepository,
+            tagColorProvider: ITagColorProvider
+        ) {
+            self.boardsRepository = boardsRepository
+            self.tagColorProvider = tagColorProvider
+        }
+        
         func load() {
-            boardTags = [
-                .init(id: 2, name: "Board 2", color: R.color.tags.accent2.color),
-                .init(id: 1, name: "Board 1", color: R.color.tags.accent1.color),
-                .init(id: 3, name: "Board 3", color: R.color.tags.accent3.color)
-            ]
+            loadBoards()
             
             selectedBoardId = 2
+        }
+        
+        private func loadBoards() {
+            Task.detached { [weak self] in
+                guard let self = self else { return }
+                
+                let boards = await self.boardsRepository.getAll()
+                
+                Task { @MainActor in
+                    self.boardTags = boards.enumerated().map(self.indexedBoardToTag)
+                }
+            }
+        }
+        
+        private func indexedBoardToTag(_ indexedBoard: (Int, Board))  ->  BoardTag.Model {
+            let color = tagColorProvider.tagColorFor(index: indexedBoard.0)
+            let board = indexedBoard.1
+            
+            return .init(id: board.id, name: board.name, color: color)
         }
     }
 }
