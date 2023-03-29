@@ -34,6 +34,7 @@
 		1A50C62429CB51FB00B137E3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A50C62329CB51FB00B137E3 /* Preview Assets.xcassets */; };
 		1A5E872629D33D720012ACD7 /* CreateTaskViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E872529D33D720012ACD7 /* CreateTaskViewModelTests.swift */; };
 		1A5E872929D33F390012ACD7 /* BoardTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E872829D33F390012ACD7 /* BoardTag.swift */; };
+		1A5E872E29D426DA0012ACD7 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 1A5E872D29D426DA0012ACD7 /* Factory */; };
 		1A6161DC29CC62CC00C7E63B /* StyledPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6161DB29CC62CC00C7E63B /* StyledPicker.swift */; };
 /* End PBXBuildFile section */
 
@@ -101,6 +102,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A157D1F29CC72C4000E9EEB /* RswiftLibrary in Frameworks */,
+				1A5E872E29D426DA0012ACD7 /* Factory in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,6 +366,7 @@
 			name = todoshechka;
 			packageProductDependencies = (
 				1A157D1E29CC72C4000E9EEB /* RswiftLibrary */,
+				1A5E872D29D426DA0012ACD7 /* Factory */,
 			);
 			productName = todoshechka;
 			productReference = 1A50C61829CB51FA00B137E3 /* todoshechka.app */;
@@ -421,6 +424,7 @@
 			mainGroup = 1A50C60F29CB51FA00B137E3;
 			packageReferences = (
 				1A157D1D29CC72C4000E9EEB /* XCRemoteSwiftPackageReference "R" */,
+				1A5E872C29D426DA0012ACD7 /* XCRemoteSwiftPackageReference "Factory" */,
 			);
 			productRefGroup = 1A50C61929CB51FA00B137E3 /* Products */;
 			projectDirPath = "";
@@ -849,6 +853,14 @@
 				minimumVersion = 7.3.0;
 			};
 		};
+		1A5E872C29D426DA0012ACD7 /* XCRemoteSwiftPackageReference "Factory" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hmlongco/Factory";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 2.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -860,6 +872,11 @@
 		1A157D2029CC72ED000E9EEB /* RswiftGenerateInternalResources */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = "plugin:RswiftGenerateInternalResources";
+		};
+		1A5E872D29D426DA0012ACD7 /* Factory */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1A5E872C29D426DA0012ACD7 /* XCRemoteSwiftPackageReference "Factory" */;
+			productName = Factory;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
