@@ -11,7 +11,7 @@ final class CreateTaskViewModelTests: XCTestCase {
     
     override func setUp() {
         sut = CreateTask.ViewModel(
-            boardsRepository: Container.shared.boardRepository,
+            boardsRepository: Container.shared.boardsRepository,
             tagColorProvider: Container.shared.tagColorProvider
         )
     }

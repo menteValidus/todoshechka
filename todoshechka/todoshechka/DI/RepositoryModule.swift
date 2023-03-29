@@ -3,7 +3,7 @@
 //
 
 extension Container {
-    var boardRepository: IBoardsRepository {
+    var boardsRepository: IBoardsRepository {
         BoardsRepository()
     }
 }

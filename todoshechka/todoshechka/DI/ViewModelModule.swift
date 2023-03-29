@@ -5,7 +5,7 @@
 extension Container {
     var createTaskViewModel: CreateTask.ViewModel {
         .init(
-            boardsRepository: self.boardRepository,
+            boardsRepository: self.boardsRepository,
             tagColorProvider: self.tagColorProvider
         )
     }
