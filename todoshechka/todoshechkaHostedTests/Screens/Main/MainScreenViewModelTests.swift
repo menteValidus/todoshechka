@@ -7,7 +7,7 @@ import XCTest
 
 final class MainScreenViewModelTests: XCTestCase {
     
-    var sut: MainScreenViewModel!
+    var sut: MainScreen.ViewModel!
     
     override func setUp() {
         sut = .init(createTaskButtonTapped: {})
