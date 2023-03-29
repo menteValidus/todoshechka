@@ -1,15 +1,6 @@
 {
   "pins" : [
     {
-      "identity" : "factory",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/hmlongco/Factory",
-      "state" : {
-        "revision" : "86c72fccbc8b4f978b46c629c46038d2e59a62f1",
-        "version" : "2.1.2"
-      }
-    },
-    {
       "identity" : "r.swift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/mac-cain13/R.swift",

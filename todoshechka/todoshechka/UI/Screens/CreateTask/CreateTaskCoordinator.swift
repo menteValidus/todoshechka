@@ -7,7 +7,7 @@ import SwiftUI
 extension CreateTask {
     struct CoordinatorView: View {
         @StateObject
-        private var object = CoordinatorObject()
+        private var object = Container.shared.createTaskCoordinatorObject
         
         var body: some View {
             CreateTask(viewModel: object.viewModel)
@@ -15,12 +15,12 @@ extension CreateTask {
     }
 }
 
-fileprivate extension CreateTask {
-    private final class CoordinatorObject: ObservableObject {
+extension CreateTask {
+    final class CoordinatorObject: ObservableObject {
         @Published private(set) var viewModel: ViewModel
         
-        init() {
-            viewModel = .init()
+        init(viewModel: ViewModel) {
+            self.viewModel = viewModel
         }
     }
 }
