@@ -32,6 +32,7 @@
 		1A50C61E29CB51FA00B137E3 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A50C61D29CB51FA00B137E3 /* MainScreen.swift */; };
 		1A50C62029CB51FB00B137E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A50C61F29CB51FB00B137E3 /* Assets.xcassets */; };
 		1A50C62429CB51FB00B137E3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A50C62329CB51FB00B137E3 /* Preview Assets.xcassets */; };
+		1A5E872629D33D720012ACD7 /* CreateTaskViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E872529D33D720012ACD7 /* CreateTaskViewModelTests.swift */; };
 		1A5E872929D33F390012ACD7 /* BoardTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E872829D33F390012ACD7 /* BoardTag.swift */; };
 		1A6161DC29CC62CC00C7E63B /* StyledPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6161DB29CC62CC00C7E63B /* StyledPicker.swift */; };
 /* End PBXBuildFile section */
@@ -82,6 +83,7 @@
 		1A50C62329CB51FB00B137E3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1A50C62929CB51FB00B137E3 /* todoshechkaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = todoshechkaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A50C62D29CB51FB00B137E3 /* MainScreenViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewModelTests.swift; sourceTree = "<group>"; };
+		1A5E872529D33D720012ACD7 /* CreateTaskViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateTaskViewModelTests.swift; path = todoshechkaHostedTests/Screens/CreateTask/CreateTaskViewModelTests.swift; sourceTree = SOURCE_ROOT; };
 		1A5E872829D33F390012ACD7 /* BoardTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTag.swift; sourceTree = "<group>"; };
 		1A6161DB29CC62CC00C7E63B /* StyledPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -152,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				1A50C62D29CB51FB00B137E3 /* MainScreenViewModelTests.swift */,
+				1A5E872529D33D720012ACD7 /* CreateTaskViewModelTests.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -465,6 +468,7 @@
 				1A157D7429CED6E6000E9EEB /* RelativeWeekDayFormatterTests.swift in Sources */,
 				1A157D6429CDECA8000E9EEB /* MainScreenViewModelTests.swift in Sources */,
 				1A157D7829CED959000E9EEB /* Calendar+createDate.swift in Sources */,
+				1A5E872629D33D720012ACD7 /* CreateTaskViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
