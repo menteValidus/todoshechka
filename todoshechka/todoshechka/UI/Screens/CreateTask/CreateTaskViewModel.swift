@@ -12,6 +12,8 @@ extension CreateTask {
         @Published var taskName: String = ""
         @Published var description: String = ""
         
+        private var boards: [Board] = []
+        
         private let boardsRepository: IBoardsRepository
         private let tagColorProvider: ITagColorProvider
         
@@ -25,19 +27,28 @@ extension CreateTask {
         
         func load() {
             loadBoards()
+        }
+        
+        func selectBoard(boardId: Int) {
+            guard boardId != selectedBoardId else { return }
             
-            selectedBoardId = 2
+            selectedBoardId = boardId
         }
         
         private func loadBoards() {
             Task.detached { [weak self] in
                 guard let self = self else { return }
                 
-                let boards = await self.boardsRepository.getAll()
-                
-                Task { @MainActor in
-                    self.boardTags = boards.enumerated().map(self.indexedBoardToTag)
-                }
+                self.configureBoards(await self.boardsRepository.getAll())
+            }
+        }
+        
+        private func configureBoards(_ boards: [Board]) {
+            self.boards = boards
+                .sorted(by: { lhs, rhs in lhs.id < rhs.id })
+            
+            Task { @MainActor in
+                self.boardTags = self.boards.enumerated().map(self.indexedBoardToTag)
             }
         }
         

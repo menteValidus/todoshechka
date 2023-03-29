@@ -89,7 +89,9 @@ private extension CreateTask {
                     BoardTag(
                         model: model,
                         selected: model.id == viewModel.selectedBoardId,
-                        action: {}
+                        action: {
+                            viewModel.selectBoard(boardId: model.id)
+                        }
                     )
                 }
             }
