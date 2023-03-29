@@ -51,9 +51,9 @@ final class MainScreenViewModel: ObservableObject {
     
     private func loadTasks() {
         tasks = [
-            .init(id: 1, name: "Task 1", board: Board(name: "Myself"), deadline: Date()),
-            .init(id: 2, name: "Task 2", board: Board(name: "Myself"), deadline: Date()),
-            .init(id: 3, name: "Task 3", board: Board(name: "Myself"), deadline: Date())
+            .init(id: 1, name: "Task 1", board: Board(id: 1, name: "Myself"), deadline: Date()),
+            .init(id: 2, name: "Task 2", board: Board(id: 2, name: "Myself"), deadline: Date()),
+            .init(id: 3, name: "Task 3", board: Board(id: 3, name: "Myself"), deadline: Date())
         ]
         
         taskCards = tasks.map(mapTaskToCard)
