@@ -28,9 +28,7 @@ struct CreateTask: View {
                 
                 deadlineField
                 
-                TextField(R.string.localizable.create_task_description_placeholder(),
-                          text: .constant(""))
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                descriptionField
                     .focused($focusedField, equals: .description)
                     .padding(.top)
                 
@@ -104,7 +102,8 @@ private extension CreateTask {
     var taskTitleField: some View {
         TextField(
             R.string.localizable.create_task_title_placeholder(),
-            text: .constant("")
+            text: $viewModel.taskName,
+            axis: .vertical
         )
         .font(.system(size: 74))
     }
@@ -125,6 +124,14 @@ private extension CreateTask {
             }
         }
         .foregroundColor(R.color.tags.onAccent.color)
+    }
+    
+    var descriptionField: some View {
+        TextField(R.string.localizable.create_task_description_placeholder(),
+                  text: $viewModel.description,
+                  axis: .vertical
+        )
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 

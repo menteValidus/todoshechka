@@ -9,6 +9,9 @@ extension CreateTask {
         @Published private(set) var boardTags: [BoardTag.Model] = []
         @Published private(set) var selectedBoardId: Int?
         
+        @Published var taskName: String = ""
+        @Published var description: String = ""
+        
         private let boardsRepository: IBoardsRepository
         private let tagColorProvider: ITagColorProvider
         
