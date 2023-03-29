@@ -4,31 +4,33 @@
 
 import SwiftUI
 
-struct MainScreenCoordinatorView: View {
-    @StateObject
-    private var object = MainScreenCoordinatorObject()
-    
-    var body: some View {
-        MainScreen(viewModel: object.mainScreenViewModel)
-            .fullScreenCover(
-                isPresented: $object.createTaskAppears,
-                content: {
-                    CreateTask.CoordinatorView()
-                }
-            )
-    }
-}
-
-private final class MainScreenCoordinatorObject: ObservableObject {
-    @Published private(set) var mainScreenViewModel: MainScreenViewModel!
-    
-    @Published var createTaskAppears = false
-    
-    init() {
-        mainScreenViewModel = .init(createTaskButtonTapped: navigateToCreateTask)
+extension MainScreen {
+    struct CoordinatorView: View {
+        @StateObject
+        private var object = Container.shared.mainScreenCoordinatorObject
+        
+        var body: some View {
+            MainScreen(viewModel: object.viewModel)
+                .fullScreenCover(
+                    isPresented: $object.createTaskAppears,
+                    content: {
+                        CreateTask.CoordinatorView()
+                    }
+                )
+        }
     }
     
-    private func navigateToCreateTask() {
-        createTaskAppears = true
+    final class CoordinatorObject: ObservableObject {
+        @Published private(set) var viewModel: ViewModel!
+        
+        @Published var createTaskAppears = false
+        
+        init(viewModelFactory: ViewModel.InjectedFactory) {
+            viewModel = viewModelFactory.create(createTaskButtonTapped: navigateToCreateTask)
+        }
+        
+        private func navigateToCreateTask() {
+            createTaskAppears = true
+        }
     }
 }

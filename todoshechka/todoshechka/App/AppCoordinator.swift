@@ -7,7 +7,7 @@ import SwiftUI
 struct AppCoordinatorView: View {
     var body: some View {
         NavigationStack {
-            MainScreenCoordinatorView()
+            MainScreen.CoordinatorView()
         }
     }
 }

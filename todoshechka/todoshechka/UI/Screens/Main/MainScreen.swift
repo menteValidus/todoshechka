@@ -5,7 +5,7 @@
 import SwiftUI
 
 struct MainScreen: View {
-    @ObservedObject var viewModel: MainScreenViewModel
+    @ObservedObject var viewModel: MainScreen.ViewModel
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -104,7 +104,7 @@ extension MainScreen {
 
 struct MainScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        MainScreen(viewModel: MainScreenViewModel(createTaskButtonTapped: {}))
+        MainScreen(viewModel: MainScreen.ViewModel(createTaskButtonTapped: {}))
             .preferredColorScheme(.dark)
     }
 }
