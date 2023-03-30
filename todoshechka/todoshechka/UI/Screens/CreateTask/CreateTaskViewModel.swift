@@ -3,11 +3,13 @@
 //
 
 import Foundation
+import SwiftUI
 
 extension CreateTask {
     final class ViewModel: ObservableObject {
         @Published private(set) var boardTags: [BoardTag.Model] = []
-        @Published private(set) var selectedBoardId: Int?
+        @Published private(set) var selectedBoardId: Int = -1
+        @Published private(set) var backgroundColor: Color = .clear
         
         @Published var taskName: String = ""
         @Published private(set) var deadlineModel: DeadlinePicker.Model?
@@ -74,8 +76,14 @@ extension CreateTask {
             self.boards = boards
                 .sorted(by: { lhs, rhs in lhs.id < rhs.id })
             
+            let boardTags = self.boards.enumerated().map(self.indexedBoardToTag)
             Task { @MainActor in
-                self.boardTags = self.boards.enumerated().map(self.indexedBoardToTag)
+                self.boardTags = boardTags
+                
+                guard let boardTag = boardTags.first else { return }
+                
+                self.selectedBoardId = boardTag.id
+                self.backgroundColor = boardTag.color
             }
         }
         

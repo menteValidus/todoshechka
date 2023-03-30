@@ -25,8 +25,19 @@ final class CreateTaskViewModelTests: XCTestCase {
         sut = nil
     }
     
-    func testDataIsLoaded() async {
-        let expectation = XCTestExpectation()
+    func testDefaultDataIsLoaded() async {
+        sut.load()
+        
+        XCTAssertNil(sut.deadlineModel)
+        XCTAssertTrue(sut.taskName.isEmpty, "\(sut.taskName) is not empty")
+        XCTAssertTrue(sut.description.isEmpty, "\(sut.description) is not empty")
+    }
+    
+    func testBoardTagsAreLoaded()  {
+        let boardTagsExpectation = XCTestExpectation(description: "Failed to load board tags")
+        let boardIdExpectation = XCTestExpectation(description: "Failed to set selected board id")
+        let backgroundColorExpectation = XCTestExpectation(description: "Failed to set bg color")
+        
         let boardTag = BoardTag.Model(id: 1, name: "Board 1", color: .red)
         let expectedBoardTags = [boardTag]
         
@@ -37,23 +48,37 @@ final class CreateTaskViewModelTests: XCTestCase {
         
         sut.load()
         
-        XCTAssertNil(sut.selectedBoardId)
-        XCTAssertNil(sut.deadlineModel)
-        XCTAssertTrue(sut.taskName.isEmpty, "\(sut.taskName) is not empty")
-        XCTAssertTrue(sut.description.isEmpty, "\(sut.description) is not empty")
-        let task = Task.detached {
+        let task1 = Task.detached {
             for await result in self.sut.$boardTags.values.dropFirst() {
                 XCTAssertEqual(expectedBoardTags, result)
-                expectation.fulfill()
-                return
+                boardTagsExpectation.fulfill()
+                break
             }
         }
         
-        wait(for: [expectation], timeout: 0.01)
-        task.cancel()
+        let task2 = Task.detached {
+            for await result in self.sut.$selectedBoardId.values.dropFirst() {
+                XCTAssertEqual(boardTag.id, result)
+                boardIdExpectation.fulfill()
+                break
+            }
+        }
+        
+        let task3 = Task.detached {
+            for await result in self.sut.$backgroundColor.values.dropFirst() {
+                XCTAssertEqual(boardTag.color, result)
+                backgroundColorExpectation.fulfill()
+                break
+            }
+        }
+        
+        wait(for: [boardTagsExpectation, boardIdExpectation, backgroundColorExpectation], timeout: 0.1)
+        task1.cancel()
+        task2.cancel()
+        task3.cancel()
     }
     
-    func testBoardSelected() async {
+    func testBoardSelectedChangesSelectedId() {
         let expectation = XCTestExpectation()
         let board1 = Board(id: 1, name: "1")
         let board2 = Board(id: 2, name: "2")
@@ -77,6 +102,30 @@ final class CreateTaskViewModelTests: XCTestCase {
             }
         }
         
+        wait(for: [expectation], timeout: 0.01)
+        task.cancel()
+    }
+    
+    func testBoardSelectedChangesBackground() {
+        let expectation = XCTestExpectation()
+        let board = Board(id: 1, name: "1")
+        
+        let expectedColor = Color.red
+        
+        boardsRepository.boards = [board]
+        tagColorProvider.providedColor = expectedColor
+        sut.load()
+        
+        sut.selectBoard(boardId: board.id)
+        
+        let task = Task.detached {
+            for await result in self.sut.$backgroundColor.values.dropFirst() {
+                XCTAssertEqual(expectedColor, result)
+                expectation.fulfill()
+                return
+            }
+        }
+
         wait(for: [expectation], timeout: 0.01)
         task.cancel()
     }
