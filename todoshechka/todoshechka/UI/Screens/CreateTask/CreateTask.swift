@@ -27,7 +27,10 @@ struct CreateTask: View {
                     .focused($focusedField, equals: .title)
                     .padding(.top)
                 
-                deadlineField
+                DeadlinePicker(
+                    model: .constant(nil),
+                    onDateSelected: { _ in }
+                )
                 
                 descriptionField
                     .focused($focusedField, equals: .description)
@@ -109,53 +112,6 @@ private extension CreateTask {
             axis: .vertical
         )
         .font(.system(size: 74))
-    }
-    
-    var deadlineField: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            let isNotEditing = viewModel.deadline == nil && !isEditingDate
-            Button(action: {
-                isEditingDate = true
-            }) {
-                Text(R.string.localizable.create_task_deadline())
-                    .font(isNotEditing ? .largeTitle.bold() : .subheadline.bold())
-                    .opacity(isNotEditing ? 0.8 : 0.5)
-                    .padding(.bottom, 6)
-            }
-            .allowsHitTesting(isNotEditing)
-            
-            if viewModel.deadline == nil && isEditingDate {
-                DatePicker(selection: .constant(Date()), label: {  })
-                    .labelsHidden()
-                    .datePickerStyle(.wheel)
-                
-                HStack(spacing: 20) {
-                    Spacer()
-                    Button(action: { isEditingDate = false }) {
-                        Image(systemName: "checkmark")
-                    }
-                    
-                    Button(action: { isEditingDate = false }) {
-                        Image(systemName: "xmark")
-                    }
-                }
-                .opacity(0.6)
-                .font(.largeTitle)
-                .foregroundColor(R.color.tags.onAccent.color)
-            }
-            
-            if viewModel.deadline != nil {
-                Button(action: {}) {
-                    VStack(alignment: .leading) {
-                        Text("3:00 p.m")
-                            .font(.largeTitle.bold())
-                        Text("Mar 28, 2023")
-                            .font(.subheadline.bold())
-                    }
-                }
-            }
-        }
-        .foregroundColor(R.color.tags.onAccent.color)
     }
     
     var descriptionField: some View {

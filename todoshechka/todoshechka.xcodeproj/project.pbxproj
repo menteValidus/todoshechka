@@ -29,6 +29,7 @@
 		1A157D9D29D2F5BA000E9EEB /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A157D9C29D2F5BA000E9EEB /* CircleButton.swift */; };
 		1A22EBF229D4506400F50DA2 /* TagColorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A22EBF129D4506400F50DA2 /* TagColorProvider.swift */; };
 		1A22EBF529D450FF00F50DA2 /* ProviderModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A22EBF429D450FF00F50DA2 /* ProviderModule.swift */; };
+		1A22EBF729D5886000F50DA2 /* DeadlinePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A22EBF629D5886000F50DA2 /* DeadlinePicker.swift */; };
 		1A50C61C29CB51FA00B137E3 /* todoshechkaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A50C61B29CB51FA00B137E3 /* todoshechkaApp.swift */; };
 		1A50C61E29CB51FA00B137E3 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A50C61D29CB51FA00B137E3 /* MainScreen.swift */; };
 		1A50C62029CB51FB00B137E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A50C61F29CB51FB00B137E3 /* Assets.xcassets */; };
@@ -82,6 +83,7 @@
 		1A157D9C29D2F5BA000E9EEB /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
 		1A22EBF129D4506400F50DA2 /* TagColorProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagColorProvider.swift; sourceTree = "<group>"; };
 		1A22EBF429D450FF00F50DA2 /* ProviderModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderModule.swift; sourceTree = "<group>"; };
+		1A22EBF629D5886000F50DA2 /* DeadlinePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadlinePicker.swift; sourceTree = "<group>"; };
 		1A50C61829CB51FA00B137E3 /* todoshechka.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = todoshechka.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A50C61B29CB51FA00B137E3 /* todoshechkaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = todoshechkaApp.swift; sourceTree = "<group>"; };
 		1A50C61D29CB51FA00B137E3 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				1A157D2929CD9072000E9EEB /* Card.swift */,
 				1A157D9C29D2F5BA000E9EEB /* CircleButton.swift */,
 				1A5E872829D33F390012ACD7 /* BoardTag.swift */,
+				1A22EBF629D5886000F50DA2 /* DeadlinePicker.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -549,6 +552,7 @@
 				1A157D8D29D04DD2000E9EEB /* CreateTaskCoordinator.swift in Sources */,
 				1A22EBF529D450FF00F50DA2 /* ProviderModule.swift in Sources */,
 				1A157D9529D076DE000E9EEB /* CreateTaskViewModel.swift in Sources */,
+				1A22EBF729D5886000F50DA2 /* DeadlinePicker.swift in Sources */,
 				1A5E872929D33F390012ACD7 /* BoardTag.swift in Sources */,
 				1A6161DC29CC62CC00C7E63B /* StyledPicker.swift in Sources */,
 				1A157D6E29CE1077000E9EEB /* RelativeWeekDayFormatter.swift in Sources */,
