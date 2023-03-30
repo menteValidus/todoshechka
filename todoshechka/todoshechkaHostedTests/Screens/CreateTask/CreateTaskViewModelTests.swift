@@ -26,6 +26,7 @@ final class CreateTaskViewModelTests: XCTestCase {
     }
     
     func testDataIsLoaded() async {
+        let expectation = XCTestExpectation()
         let boardTag = BoardTag.Model(id: 1, name: "Board 1", color: .red)
         let expectedBoardTags = [boardTag]
         
@@ -37,13 +38,23 @@ final class CreateTaskViewModelTests: XCTestCase {
         sut.load()
         
         XCTAssertNil(sut.selectedBoardId)
-        for await result in self.sut.$boardTags.values.dropFirst() {
-            XCTAssertEqual(expectedBoardTags, result)
-            return
+        XCTAssertNil(sut.deadlineModel)
+        XCTAssertTrue(sut.taskName.isEmpty, "\(sut.taskName) is not empty")
+        XCTAssertTrue(sut.description.isEmpty, "\(sut.description) is not empty")
+        let task = Task.detached {
+            for await result in self.sut.$boardTags.values.dropFirst() {
+                XCTAssertEqual(expectedBoardTags, result)
+                expectation.fulfill()
+                return
+            }
         }
+        
+        wait(for: [expectation], timeout: 0.01)
+        task.cancel()
     }
     
     func testBoardSelected() async {
+        let expectation = XCTestExpectation()
         let board1 = Board(id: 1, name: "1")
         let board2 = Board(id: 2, name: "2")
         
@@ -58,10 +69,39 @@ final class CreateTaskViewModelTests: XCTestCase {
         sut.selectBoard(boardId: board2.id)
         
         XCTAssertEqual(board2.id, sut.selectedBoardId)
-        for await result in self.sut.$boardTags.values.dropFirst() {
-            XCTAssertEqual(expectedBoardTags, result)
-            return
+        let task = Task.detached {
+            for await result in self.sut.$boardTags.values.dropFirst() {
+                XCTAssertEqual(expectedBoardTags, result)
+                expectation.fulfill()
+                return
+            }
         }
+        
+        wait(for: [expectation], timeout: 0.01)
+        task.cancel()
+    }
+    
+    func testDeadlineSelected() async {
+        let expectation = XCTestExpectation()
+        let date = Calendar.current.date(year: 2023, month: 3, day: 30, hour: 13, minute: 44)!
+        let expectedResult = DeadlinePicker.Model(
+            rawDate: date,
+            formattedTime: "1:44 PM",
+            formattedDate: "Mar 30, 2023"
+        )
+        
+        sut.selectDate(date: date)
+        
+        let task = Task.detached {
+            for await result in self.sut.$deadlineModel.values {
+                XCTAssertEqual(expectedResult, result)
+                expectation.fulfill()
+                return
+            }
+        }
+        
+        wait(for: [expectation], timeout: 0.001)
+        task.cancel()
     }
 }
 

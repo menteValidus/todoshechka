@@ -18,6 +18,22 @@ extension CreateTask {
         private let boardsRepository: IBoardsRepository
         private let tagColorProvider: ITagColorProvider
         
+        private lazy var deadlineDateFormatter: DateFormatter = {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .medium
+            dateFormatter.timeStyle = .none
+            
+            return dateFormatter
+        }()
+        
+        private lazy var deadlineTimeFormatter: DateFormatter = {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .none
+            dateFormatter.timeStyle = .short
+            
+            return dateFormatter
+        }()
+        
         init(
             boardsRepository: IBoardsRepository,
             tagColorProvider: ITagColorProvider
@@ -34,6 +50,16 @@ extension CreateTask {
             guard boardId != selectedBoardId else { return }
             
             selectedBoardId = boardId
+        }
+        
+        func selectDate(date: Date) {
+            guard date != deadlineModel?.rawDate else { return }
+            
+            deadlineModel = .init(
+                rawDate: date,
+                formattedTime: deadlineTimeFormatter.string(from: date),
+                formattedDate: deadlineDateFormatter.string(from: date)
+            )
         }
         
         private func loadBoards() {

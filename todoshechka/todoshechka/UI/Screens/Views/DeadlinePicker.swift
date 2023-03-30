@@ -83,7 +83,7 @@ private extension DeadlinePicker {
 }
 
 extension DeadlinePicker {
-    struct Model {
+    struct Model: Equatable {
         let rawDate: Date
         let formattedTime: String
         let formattedDate: String
