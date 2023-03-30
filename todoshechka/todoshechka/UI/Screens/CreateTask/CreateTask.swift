@@ -29,7 +29,7 @@ struct CreateTask: View {
                 
                 DeadlinePicker(
                     model: viewModel.deadlineModel,
-                    onDateSelected: { _ in }
+                    onDateSelected: viewModel.selectDate
                 )
                 
                 descriptionField

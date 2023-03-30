@@ -6,14 +6,14 @@ import SwiftUI
 
 struct DeadlinePicker: View {
     var model: Model?
-    let onDateSelected: (Date?) -> Void
+    let onDateSelected: (Date) -> Void
     
     @State private var isEditingDate = false
     @State private var date: Date
     
     init(
         model: Model?,
-        onDateSelected: @escaping (Date?) -> Void
+        onDateSelected: @escaping (Date) -> Void
     ) {
         self.model = model
         self.onDateSelected = onDateSelected
