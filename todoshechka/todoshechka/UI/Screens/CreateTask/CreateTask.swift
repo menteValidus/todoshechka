@@ -28,7 +28,7 @@ struct CreateTask: View {
                     .padding(.top)
                 
                 DeadlinePicker(
-                    model: .constant(nil),
+                    model: viewModel.deadlineModel,
                     onDateSelected: { _ in }
                 )
                 

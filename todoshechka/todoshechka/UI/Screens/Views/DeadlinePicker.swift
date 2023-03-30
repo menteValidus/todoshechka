@@ -5,19 +5,19 @@
 import SwiftUI
 
 struct DeadlinePicker: View {
-    @Binding var model: Model?
+    var model: Model?
     let onDateSelected: (Date?) -> Void
     
     @State private var isEditingDate = false
     @State private var date: Date
     
     init(
-        model: Binding<Model?>,
+        model: Model?,
         onDateSelected: @escaping (Date?) -> Void
     ) {
-        self._model = model
+        self.model = model
         self.onDateSelected = onDateSelected
-        let date = model.wrappedValue?.rawDate ?? Date()
+        let date = model?.rawDate ?? Date()
         self._date = State(initialValue: date)
     }
     
@@ -32,7 +32,7 @@ struct DeadlinePicker: View {
             }
             .allowsHitTesting(isNotEditing)
             
-            if model == nil && isEditingDate {
+            if isEditingDate {
                 DatePicker(selection: $date, label: {  })
                     .labelsHidden()
                     .datePickerStyle(.wheel)
@@ -52,7 +52,7 @@ struct DeadlinePicker: View {
                 .foregroundColor(R.color.tags.onAccent.color)
             }
             
-            if let model = model {
+            if let model = model, !isEditingDate {
                 Button(action: startEditingDate) {
                     VStack(alignment: .leading) {
                         Text(model.formattedTime)
@@ -85,15 +85,24 @@ private extension DeadlinePicker {
 extension DeadlinePicker {
     struct Model {
         let rawDate: Date
-        let formattedDate: String
         let formattedTime: String
+        let formattedDate: String
     }
 }
 
 struct DeadlinePicker_Previews: PreviewProvider {
     static var previews: some View {
         DeadlinePicker(
-            model: .constant(nil),
+            model: nil,
+            onDateSelected: { _ in }
+        )
+        
+        DeadlinePicker(
+            model: .init(
+                rawDate: .init(),
+                formattedTime: "time",
+                formattedDate: "date"
+            ),
             onDateSelected: { _ in }
         )
     }
