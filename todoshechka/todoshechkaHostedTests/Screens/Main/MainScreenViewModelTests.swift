@@ -17,7 +17,7 @@ final class MainScreenViewModelTests: XCTestCase {
         sut = nil
     }
     
-    func testDataIsLoaded() {
+    func testDataIsLoaded() async {
         let testDate = Calendar.current.date(year: 2023, month: 3, day: 20, hour: 8, minute: 0)
         sut = .init(
             dateGenerator: {
@@ -26,19 +26,22 @@ final class MainScreenViewModelTests: XCTestCase {
             createTaskButtonTapped: {}
         )
         
-        sut.load()
+        await sut.load()
         
-        XCTAssertEqual(R.string.localizable.welcome_good_morning(), sut.welcomeMessage)
-        XCTAssertEqual("Mar 20, 2023", sut.selectedFormattedDate)
+        let welcomeMessage = await sut.welcomeMessage
+        let selectedFormattedDate = await sut.selectedFormattedDate
+        XCTAssertEqual(R.string.localizable.welcome_good_morning(), welcomeMessage)
+        XCTAssertEqual("Mar 20, 2023", selectedFormattedDate)
     }
     
-    func testRelativeDateIsAssigned() {
-        sut.load()
+    func testRelativeDateIsAssigned() async {
+        await sut.load()
         
-        XCTAssertTrue(sut.selectedRelativeDate.contains("Today"))
+        let selectedRelativeDate = await sut.selectedRelativeDate
+        XCTAssertTrue(selectedRelativeDate.contains("Today"))
     }
     
-    func testCreateTaskActionIsTriggered() {
+    func testCreateTaskActionIsTriggered() async {
         let expectation = XCTestExpectation()
         sut = .init(
             createTaskButtonTapped: {
@@ -46,7 +49,7 @@ final class MainScreenViewModelTests: XCTestCase {
             }
         )
         
-        sut.createTask()
+        await sut.createTask()
         
         wait(for: [expectation], timeout: 0.001)
     }

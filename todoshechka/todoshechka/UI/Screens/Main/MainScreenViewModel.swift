@@ -5,6 +5,7 @@
 import Foundation
 
 extension MainScreen {
+    @MainActor
     final class ViewModel: ObservableObject {
         
         @Published private(set) var welcomeMessage: String = ""
@@ -28,7 +29,7 @@ extension MainScreen {
             return dateFormatter
         }
         
-        init(
+        nonisolated init(
             dateGenerator: @escaping DateGenerator = Date.init,
             createTaskButtonTapped: @escaping VoidCallback
         ) {
@@ -57,7 +58,9 @@ extension MainScreen {
                 .init(id: 3, name: "Task 3", board: Board(id: 3, name: "Myself"), deadline: Date())
             ]
             
-            taskCards = tasks.map(mapTaskToCard)
+            taskCards = tasks.map { task in
+                mapTaskToCard(task)
+            }
         }
         
         private func mapTaskToCard(_ task: Todo.Task) -> TaskCard {
