@@ -46,7 +46,7 @@ struct CreateTask: View {
         .preferredColorScheme(.light)
         .scrollDismissesKeyboard(.interactively)
         .background(
-            R.color.tags.accent2.color
+            viewModel.backgroundColor
                 .ignoresSafeArea()
         )
         .overlay(
