@@ -25,15 +25,14 @@ final class CreateTaskViewModelTests: XCTestCase {
         sut = nil
     }
     
+    @MainActor
     func testDefaultDataIsLoaded() async {
         await sut.load()
 
-        let deadlineModel = await sut.deadlineModel
-        XCTAssertNil(deadlineModel)
-        let taskName = await sut.taskName
-        XCTAssertTrue(taskName.isEmpty, "\(taskName) is not empty")
-        let description = await sut.description
-        XCTAssertTrue(description.isEmpty, "\(description) is not empty")
+        XCTAssertNil(sut.deadlineModel)
+        XCTAssertTrue(sut.taskName.isEmpty, "\(sut.taskName) is not empty")
+        XCTAssertTrue(sut.description.isEmpty, "\(sut.description) is not empty")
+        XCTAssertFalse(sut.createButtonEnabled)
     }
     
     func testBoardTagsAreLoaded() async {
@@ -68,6 +67,7 @@ final class CreateTaskViewModelTests: XCTestCase {
         XCTAssertEqual(board2.id, selectedBoardId)
     }
     
+    @MainActor
     func testBoardSelectionChangesBackgroundColor() async {
         let board1 = Board(id: 1, name: "1")
         let board2 = Board(id: 2, name: "2")
@@ -77,11 +77,12 @@ final class CreateTaskViewModelTests: XCTestCase {
         boardsRepository.boards = [board1, board2]
         await sut.load()
 
-        await sut.selectBoard(boardId: board2.id)
+        sut.selectBoard(boardId: board2.id)
 
-        let backgroundColor = await sut.backgroundColor
-        XCTAssertEqual(expectedColor, backgroundColor)
+        XCTAssertEqual(expectedColor, sut.backgroundColor)
     }
+    
+    @MainActor
     func testDeadlineSelected() async {
         let date = Calendar.current.date(year: 2023, month: 3, day: 30, hour: 13, minute: 44)!
         let expectedResult = DeadlinePicker.Model(
@@ -90,10 +91,21 @@ final class CreateTaskViewModelTests: XCTestCase {
             formattedDate: "Mar 30, 2023"
         )
 
-        await sut.selectDate(date: date)
+        sut.selectDate(date: date)
 
-        let deadlineModel = await sut.deadlineModel
-        XCTAssertEqual(expectedResult, deadlineModel)
+        XCTAssertEqual(expectedResult, sut.deadlineModel)
+    }
+    
+    @MainActor
+    func testCreateButtonEnabledWhenDataIsVaild() async {
+        let board1 = Board(id: 1, name: "1")
+        boardsRepository.boards = [board1]
+        await sut.load()
+        
+        sut.taskName = "Name"
+        sut.description = "Description"
+        
+        XCTAssertTrue(sut.createButtonEnabled)
     }
 }
 

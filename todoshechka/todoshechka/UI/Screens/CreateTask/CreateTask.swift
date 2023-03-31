@@ -29,7 +29,9 @@ struct CreateTask: View {
                 
                 DeadlinePicker(
                     model: viewModel.deadlineModel,
-                    onDateSelected: viewModel.selectDate
+                    onDateSelected: { date in
+                        viewModel.selectDate(date: date)
+                    }
                 )
                 
                 descriptionField
@@ -53,12 +55,12 @@ struct CreateTask: View {
             VStack {
                 Spacer()
                 
-                CircleButton(
-                    icon: Image(systemName: "checkmark"),
-                    backgroundColor:  R.color.primary.color,
-                    foregroundColor: R.color.onPrimaryVariant3.color,
-                    action: {}
-                )
+                Button(action: {}) {
+                    Image(systemName: "checkmark")
+                        .foregroundColor(R.color.onPrimaryVariant3.color)
+                }
+                .disabled(!viewModel.createButtonEnabled)
+                .buttonStyle(CircleButtonStyle(backgroundColor: R.color.primary.color))
                 .frame(width: 80)
                 .padding()
             }
@@ -76,13 +78,12 @@ private extension CreateTask {
     var topActionItems: some View {
         HStack {
             Spacer()
-            CircleButton(
-                icon: Image(systemName: "xmark"),
-                backgroundColor: R.color.primary.color,
-                foregroundColor: R.color.onPrimaryVariant3.color,
-                action: cancelTapped
-            )
-            .frame(width: 44)
+            Button(action: cancelTapped) {
+                Image(systemName: "xmark")
+                    .foregroundColor(R.color.onPrimaryVariant3.color)
+            }
+            .buttonStyle(CircleButtonStyle(backgroundColor: R.color.primary.color))
+            .frame(width: 40)
         }
     }
     

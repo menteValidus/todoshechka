@@ -11,10 +11,20 @@ extension CreateTask {
         @Published private(set) var boardTags: [BoardTag.Model] = []
         @Published private(set) var selectedBoardId: Int = -1
         @Published private(set) var backgroundColor: Color = .clear
-        
-        @Published var taskName: String = ""
         @Published private(set) var deadlineModel: DeadlinePicker.Model?
-        @Published var description: String = ""
+        
+        @Published var taskName: String = "" {
+            didSet {
+                checkIsCreateButtonEnabled()
+            }
+        }
+        @Published var description: String = "" {
+            didSet {
+                checkIsCreateButtonEnabled()
+            }
+        }
+        
+        @Published private(set) var createButtonEnabled = false
         
         private var boards: [Board] = []
         
@@ -71,24 +81,25 @@ extension CreateTask {
             )
         }
         
-        private func loadBoards() async {
-            let boards = await boardsRepository.getAll()
-            self.configureBoards(await self.boardsRepository.getAll())
+        private func checkIsCreateButtonEnabled() {
+            createButtonEnabled = !taskName.isEmpty && !description.isEmpty
         }
         
-        private func configureBoards(_ boards: [Board]) {
+        private func loadBoards() async {
+            let boards = await boardsRepository.getAll()
+            
             self.boards = boards
                 .sorted(by: { lhs, rhs in lhs.id < rhs.id })
             
-            let boardTags = self.boards.enumerated().map(self.indexedBoardToTag)
-//            Task { @MainActor in
-                self.boardTags = boardTags
-                
-                guard let boardTag = boardTags.first else { return }
-                
-                self.selectedBoardId = boardTag.id
-                self.backgroundColor = boardTag.color
-//            }
+            let boardTags = self.boards.enumerated().map { indexedBoard in
+                self.indexedBoardToTag(indexedBoard)
+            }
+            self.boardTags = boardTags
+            
+            guard let boardTag = boardTags.first else { return }
+            
+            self.selectedBoardId = boardTag.id
+            self.backgroundColor = boardTag.color
         }
         
         private func indexedBoardToTag(_ indexedBoard: (Int, Board))  ->  BoardTag.Model {

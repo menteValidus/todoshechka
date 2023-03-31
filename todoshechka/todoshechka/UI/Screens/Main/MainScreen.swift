@@ -92,12 +92,11 @@ extension MainScreen {
     }
     
     var fab: some View {
-        CircleButton(
-            icon: Image(systemName: "plus"),
-            backgroundColor: R.color.secondary1.color,
-            foregroundColor: R.color.onSecondary1.color,
-            action: viewModel.createTask
-        )
+        Button(action: { viewModel.createTask() }) {
+            Image(systemName: "plus")
+                .foregroundColor(R.color.onSecondary1.color)
+        }
+        .buttonStyle(CircleButtonStyle(backgroundColor: R.color.secondary1.color))
         .frame(width: 80, height: 80)
     }
 }
