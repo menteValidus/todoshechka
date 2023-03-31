@@ -6,6 +6,7 @@ import Foundation
 import SwiftUI
 
 extension CreateTask {
+    @MainActor
     final class ViewModel: ObservableObject {
         @Published private(set) var boardTags: [BoardTag.Model] = []
         @Published private(set) var selectedBoardId: Int = -1
@@ -36,7 +37,7 @@ extension CreateTask {
             return dateFormatter
         }()
         
-        init(
+        nonisolated init(
             boardsRepository: IBoardsRepository,
             tagColorProvider: ITagColorProvider
         ) {
@@ -44,14 +45,20 @@ extension CreateTask {
             self.tagColorProvider = tagColorProvider
         }
         
-        func load() {
-            loadBoards()
+        func load() async {
+            await loadBoards()
         }
         
         func selectBoard(boardId: Int) {
             guard boardId != selectedBoardId else { return }
             
             selectedBoardId = boardId
+            
+            guard let selectedBoardTag = boardTags
+                .first(where: { boardTag in boardTag.id == boardId }) else {
+                return
+            }
+            backgroundColor = selectedBoardTag.color
         }
         
         func selectDate(date: Date) {
@@ -64,12 +71,9 @@ extension CreateTask {
             )
         }
         
-        private func loadBoards() {
-            Task.detached { [weak self] in
-                guard let self = self else { return }
-                
-                self.configureBoards(await self.boardsRepository.getAll())
-            }
+        private func loadBoards() async {
+            let boards = await boardsRepository.getAll()
+            self.configureBoards(await self.boardsRepository.getAll())
         }
         
         private func configureBoards(_ boards: [Board]) {
@@ -77,14 +81,14 @@ extension CreateTask {
                 .sorted(by: { lhs, rhs in lhs.id < rhs.id })
             
             let boardTags = self.boards.enumerated().map(self.indexedBoardToTag)
-            Task { @MainActor in
+//            Task { @MainActor in
                 self.boardTags = boardTags
                 
                 guard let boardTag = boardTags.first else { return }
                 
                 self.selectedBoardId = boardTag.id
                 self.backgroundColor = boardTag.color
-            }
+//            }
         }
         
         private func indexedBoardToTag(_ indexedBoard: (Int, Board))  ->  BoardTag.Model {

@@ -26,18 +26,17 @@ final class CreateTaskViewModelTests: XCTestCase {
     }
     
     func testDefaultDataIsLoaded() async {
-        sut.load()
-        
-        XCTAssertNil(sut.deadlineModel)
-        XCTAssertTrue(sut.taskName.isEmpty, "\(sut.taskName) is not empty")
-        XCTAssertTrue(sut.description.isEmpty, "\(sut.description) is not empty")
+        await sut.load()
+
+        let deadlineModel = await sut.deadlineModel
+        XCTAssertNil(deadlineModel)
+        let taskName = await sut.taskName
+        XCTAssertTrue(taskName.isEmpty, "\(taskName) is not empty")
+        let description = await sut.description
+        XCTAssertTrue(description.isEmpty, "\(description) is not empty")
     }
     
-    func testBoardTagsAreLoaded()  {
-        let boardTagsExpectation = XCTestExpectation(description: "Failed to load board tags")
-        let boardIdExpectation = XCTestExpectation(description: "Failed to set selected board id")
-        let backgroundColorExpectation = XCTestExpectation(description: "Failed to set bg color")
-        
+    func testBoardTagsAreLoaded() async {
         let boardTag = BoardTag.Model(id: 1, name: "Board 1", color: .red)
         let expectedBoardTags = [boardTag]
         
@@ -46,111 +45,55 @@ final class CreateTaskViewModelTests: XCTestCase {
         ]
         tagColorProvider.providedColor = boardTag.color
         
-        sut.load()
+        await sut.load()
         
-        let task1 = Task.detached {
-            for await result in self.sut.$boardTags.values.dropFirst() {
-                XCTAssertEqual(expectedBoardTags, result)
-                boardTagsExpectation.fulfill()
-                break
-            }
-        }
-        
-        let task2 = Task.detached {
-            for await result in self.sut.$selectedBoardId.values.dropFirst() {
-                XCTAssertEqual(boardTag.id, result)
-                boardIdExpectation.fulfill()
-                break
-            }
-        }
-        
-        let task3 = Task.detached {
-            for await result in self.sut.$backgroundColor.values.dropFirst() {
-                XCTAssertEqual(boardTag.color, result)
-                backgroundColorExpectation.fulfill()
-                break
-            }
-        }
-        
-        wait(for: [boardTagsExpectation, boardIdExpectation, backgroundColorExpectation], timeout: 0.1)
-        task1.cancel()
-        task2.cancel()
-        task3.cancel()
+        let boardTags = await sut.boardTags
+        XCTAssertEqual(expectedBoardTags, boardTags)
+        let selectedBoardId = await sut.selectedBoardId
+        XCTAssertEqual(boardTag.id, selectedBoardId)
+        let backgroundColor = await sut.backgroundColor
+        XCTAssertEqual(boardTag.color, backgroundColor)
     }
     
-    func testBoardSelectedChangesSelectedId() {
-        let expectation = XCTestExpectation()
+    func testBoardSelectionChangesSelectedId() async {
         let board1 = Board(id: 1, name: "1")
         let board2 = Board(id: 2, name: "2")
-        
-        let expectedBoardTags = [
-            BoardTag.Model(id: board1.id, name: board1.name, color: tagColorProvider.providedColor),
-            BoardTag.Model(id: board2.id, name: board2.name, color: tagColorProvider.providedColor)
-        ]
-        
-        boardsRepository.boards = [board1, board2]
-        sut.load()
-        
-        sut.selectBoard(boardId: board2.id)
-        
-        XCTAssertEqual(board2.id, sut.selectedBoardId)
-        let task = Task.detached {
-            for await result in self.sut.$boardTags.values.dropFirst() {
-                XCTAssertEqual(expectedBoardTags, result)
-                expectation.fulfill()
-                return
-            }
-        }
-        
-        wait(for: [expectation], timeout: 0.01)
-        task.cancel()
-    }
-    
-    func testBoardSelectedChangesBackground() {
-        let expectation = XCTestExpectation()
-        let board = Board(id: 1, name: "1")
-        
-        let expectedColor = Color.red
-        
-        boardsRepository.boards = [board]
-        tagColorProvider.providedColor = expectedColor
-        sut.load()
-        
-        sut.selectBoard(boardId: board.id)
-        
-        let task = Task.detached {
-            for await result in self.sut.$backgroundColor.values.dropFirst() {
-                XCTAssertEqual(expectedColor, result)
-                expectation.fulfill()
-                return
-            }
-        }
 
-        wait(for: [expectation], timeout: 0.01)
-        task.cancel()
+        boardsRepository.boards = [board1, board2]
+        await sut.load()
+
+        await sut.selectBoard(boardId: board2.id)
+
+        let selectedBoardId = await sut.selectedBoardId
+        XCTAssertEqual(board2.id, selectedBoardId)
     }
     
+    func testBoardSelectionChangesBackgroundColor() async {
+        let board1 = Board(id: 1, name: "1")
+        let board2 = Board(id: 2, name: "2")
+
+        let expectedColor = tagColorProvider.providedColor
+
+        boardsRepository.boards = [board1, board2]
+        await sut.load()
+
+        await sut.selectBoard(boardId: board2.id)
+
+        let backgroundColor = await sut.backgroundColor
+        XCTAssertEqual(expectedColor, backgroundColor)
+    }
     func testDeadlineSelected() async {
-        let expectation = XCTestExpectation()
         let date = Calendar.current.date(year: 2023, month: 3, day: 30, hour: 13, minute: 44)!
         let expectedResult = DeadlinePicker.Model(
             rawDate: date,
             formattedTime: "1:44 PM",
             formattedDate: "Mar 30, 2023"
         )
-        
-        sut.selectDate(date: date)
-        
-        let task = Task.detached {
-            for await result in self.sut.$deadlineModel.values {
-                XCTAssertEqual(expectedResult, result)
-                expectation.fulfill()
-                return
-            }
-        }
-        
-        wait(for: [expectation], timeout: 0.001)
-        task.cancel()
+
+        await sut.selectDate(date: date)
+
+        let deadlineModel = await sut.deadlineModel
+        XCTAssertEqual(expectedResult, deadlineModel)
     }
 }
 

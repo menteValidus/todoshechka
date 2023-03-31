@@ -101,7 +101,9 @@ private extension CreateTask {
             }
         }
         .onAppear {
-            viewModel.load()
+            Task {
+                await viewModel.load()
+            }
         }
     }
     
