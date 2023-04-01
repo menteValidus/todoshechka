@@ -93,7 +93,7 @@
 		1A50C62329CB51FB00B137E3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1A50C62929CB51FB00B137E3 /* todoshechkaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = todoshechkaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A50C62D29CB51FB00B137E3 /* MainScreenViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewModelTests.swift; sourceTree = "<group>"; };
-		1A5E872529D33D720012ACD7 /* CreateTaskViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateTaskViewModelTests.swift; path = todoshechkaHostedTests/Screens/CreateTask/CreateTaskViewModelTests.swift; sourceTree = SOURCE_ROOT; };
+		1A5E872529D33D720012ACD7 /* CreateTaskViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateTaskViewModelTests.swift; path = todoshechkaHostedTests/Screens/CreateTaskViewModelTests.swift; sourceTree = SOURCE_ROOT; };
 		1A5E872829D33F390012ACD7 /* BoardTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTag.swift; sourceTree = "<group>"; };
 		1A5E873329D427C40012ACD7 /* BoardsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardsRepository.swift; sourceTree = "<group>"; };
 		1A5E873829D42E1C0012ACD7 /* RepositoryModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryModule.swift; sourceTree = "<group>"; };
@@ -161,18 +161,10 @@
 		1A157D3329CDDE92000E9EEB /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				1A157D3429CDDE98000E9EEB /* Main */,
-			);
-			path = Screens;
-			sourceTree = "<group>";
-		};
-		1A157D3429CDDE98000E9EEB /* Main */ = {
-			isa = PBXGroup;
-			children = (
 				1A50C62D29CB51FB00B137E3 /* MainScreenViewModelTests.swift */,
 				1A5E872529D33D720012ACD7 /* CreateTaskViewModelTests.swift */,
 			);
-			path = Main;
+			path = Screens;
 			sourceTree = "<group>";
 		};
 		1A157D3929CDE5EA000E9EEB /* App */ = {
