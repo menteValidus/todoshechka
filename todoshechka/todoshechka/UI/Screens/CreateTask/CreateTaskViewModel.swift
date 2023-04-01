@@ -85,7 +85,12 @@ extension CreateTask {
         }
         
         func createTask() async {
-            
+            await tasksRepository.createTask(
+                name: taskName,
+                description: description,
+                deadline: deadlineModel?.rawDate,
+                boardId: selectedBoardId
+            )
         }
         
         private func checkIsCreateButtonEnabled() {

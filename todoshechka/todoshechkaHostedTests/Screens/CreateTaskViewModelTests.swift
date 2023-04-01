@@ -10,15 +10,17 @@ final class CreateTaskViewModelTests: XCTestCase {
 
     var sut: CreateTask.ViewModel!
     var boardsRepository: BoardRepositoryMock!
+    var tasksRepository: TasksRepositoryMock!
     var tagColorProvider: TagColorProviderMock!
     
     override func setUp() {
         boardsRepository = .init()
+        tasksRepository = .init()
         tagColorProvider = .init()
         
         sut = CreateTask.ViewModel(
             boardsRepository: boardsRepository,
-            tasksRepository: TasksRepositoryMock(),
+            tasksRepository: tasksRepository,
             tagColorProvider: tagColorProvider
         )
     }
@@ -102,7 +104,27 @@ final class CreateTaskViewModelTests: XCTestCase {
         XCTAssertTrue(sut.createButtonEnabled)
     }
     
-    
+    func testCreateTaskTriggersRepository() async {
+        let expectedName = "Name"
+        let expectedDescription = "Description"
+        let expectedDeadline = Date()
+        let expectedBoardId = 1
+        
+        let board1 = Board(id: expectedBoardId, name: "1")
+        boardsRepository.boards = [board1]
+        await sut.load()
+        
+        sut.taskName = expectedName
+        sut.description = expectedDescription
+        sut.selectDate(date: expectedDeadline)
+        
+        await sut.createTask()
+        
+        XCTAssertEqual(expectedName, tasksRepository.createdTaskInfo?.name)
+        XCTAssertEqual(expectedDescription, tasksRepository.createdTaskInfo?.description)
+        XCTAssertEqual(expectedDeadline, tasksRepository.createdTaskInfo?.deadline)
+        XCTAssertEqual(expectedBoardId, tasksRepository.createdTaskInfo?.boardId)
+    }
 }
 
 class BoardRepositoryMock: IBoardsRepository {
@@ -125,13 +147,15 @@ class TagColorProviderMock: ITagColorProvider {
 
 import Combine
 class TasksRepositoryMock: ITasksRepository {
+    typealias CreatedTaskInfo = (name: String, description: String, deadline: Date?, boardId: Int)
     var eventPublisher: AnyPublisher<TaskRepositoryEvent, Never> = PassthroughSubject().eraseToAnyPublisher()
     
     func getAll() async -> [Todo.Task] {
         []
     }
     
+    var createdTaskInfo: CreatedTaskInfo?
     func createTask(name: String, description: String, deadline: Date?, boardId: Int) async {
-        
+        createdTaskInfo = (name: name, description: description, deadline: deadline, boardId: boardId)
     }
 }
