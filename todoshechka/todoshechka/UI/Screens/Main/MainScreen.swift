@@ -28,7 +28,9 @@ struct MainScreen: View {
             fab
         }
         .onAppear {
-            viewModel.load()
+            Task {
+                await viewModel.load()
+            }
         }
     }
 }
@@ -103,7 +105,7 @@ extension MainScreen {
 
 struct MainScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        MainScreen(viewModel: MainScreen.ViewModel(createTaskButtonTapped: {}))
+        MainScreen(viewModel: Container.shared.mainScreenViewModelFactory.create { })
             .preferredColorScheme(.dark)
     }
 }

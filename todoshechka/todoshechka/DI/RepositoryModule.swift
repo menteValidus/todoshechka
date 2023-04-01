@@ -6,4 +6,8 @@ extension Container {
     var boardsRepository: IBoardsRepository {
         BoardsRepository()
     }
+    
+    var tasksRepository: ITasksRepository {
+        TasksRepository()
+    }
 }

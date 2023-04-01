@@ -29,6 +29,7 @@ extension CreateTask {
         private var boards: [Board] = []
         
         private let boardsRepository: IBoardsRepository
+        private let tasksRepository: ITasksRepository
         private let tagColorProvider: ITagColorProvider
         
         private lazy var deadlineDateFormatter: DateFormatter = {
@@ -49,9 +50,11 @@ extension CreateTask {
         
         nonisolated init(
             boardsRepository: IBoardsRepository,
+            tasksRepository: ITasksRepository,
             tagColorProvider: ITagColorProvider
         ) {
             self.boardsRepository = boardsRepository
+            self.tasksRepository = tasksRepository
             self.tagColorProvider = tagColorProvider
         }
         
@@ -79,6 +82,10 @@ extension CreateTask {
                 formattedTime: deadlineTimeFormatter.string(from: date),
                 formattedDate: deadlineDateFormatter.string(from: date)
             )
+        }
+        
+        func createTask() async {
+            
         }
         
         private func checkIsCreateButtonEnabled() {

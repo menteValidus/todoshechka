@@ -17,6 +17,7 @@ extension MainScreen {
         private var tasks: [Todo.Task] = []
         private var boards: [Board] = []
         
+        private let tasksRepository: ITasksRepository
         private let dateGenerator: DateGenerator
         
         private let createTaskButtonTapped: VoidCallback
@@ -30,33 +31,31 @@ extension MainScreen {
         }
         
         nonisolated init(
+            tasksRepository: ITasksRepository,
             dateGenerator: @escaping DateGenerator = Date.init,
             createTaskButtonTapped: @escaping VoidCallback
         ) {
+            self.tasksRepository = tasksRepository
             self.dateGenerator = dateGenerator
             self.createTaskButtonTapped = createTaskButtonTapped
         }
         
-        func load() {
+        func load() async {
             welcomeMessage = R.string.localizable.welcome_good_morning()
             
             let relativeWeekDayFormatter = RelativeWeekDayFormatter(todayGenerator: dateGenerator)
             selectedRelativeDate = relativeWeekDayFormatter.string(from: dateGenerator()) ?? ""
             selectedFormattedDate = dateFormatter.string(from: dateGenerator())
             
-            loadTasks()
+            await loadTasks()
         }
         
         func createTask() {
             createTaskButtonTapped()
         }
         
-        private func loadTasks() {
-            tasks = [
-                .init(id: 1, name: "Task 1", board: Board(id: 1, name: "Myself"), deadline: Date()),
-                .init(id: 2, name: "Task 2", board: Board(id: 2, name: "Myself"), deadline: Date()),
-                .init(id: 3, name: "Task 3", board: Board(id: 3, name: "Myself"), deadline: Date())
-            ]
+        private func loadTasks() async {
+            tasks = await tasksRepository.getAll()
             
             taskCards = tasks.map { task in
                 mapTaskToCard(task)

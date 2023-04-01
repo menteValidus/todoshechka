@@ -39,6 +39,7 @@
 		1A5E873429D427C40012ACD7 /* BoardsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E873329D427C40012ACD7 /* BoardsRepository.swift */; };
 		1A5E873929D42E1C0012ACD7 /* RepositoryModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E873829D42E1C0012ACD7 /* RepositoryModule.swift */; };
 		1A6161DC29CC62CC00C7E63B /* StyledPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6161DB29CC62CC00C7E63B /* StyledPicker.swift */; };
+		1AD2928129D8245700232D0E /* TasksRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD2928029D8245700232D0E /* TasksRepository.swift */; };
 		1AE978B129D4399F00AA62BB /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE978B029D4399F00AA62BB /* Container.swift */; };
 		1AE978B329D43C6F00AA62BB /* ViewModelModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE978B229D43C6F00AA62BB /* ViewModelModule.swift */; };
 		1AE978B529D43C7C00AA62BB /* CoordinatorModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE978B429D43C7C00AA62BB /* CoordinatorModule.swift */; };
@@ -97,6 +98,7 @@
 		1A5E873329D427C40012ACD7 /* BoardsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardsRepository.swift; sourceTree = "<group>"; };
 		1A5E873829D42E1C0012ACD7 /* RepositoryModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryModule.swift; sourceTree = "<group>"; };
 		1A6161DB29CC62CC00C7E63B /* StyledPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledPicker.swift; sourceTree = "<group>"; };
+		1AD2928029D8245700232D0E /* TasksRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksRepository.swift; sourceTree = "<group>"; };
 		1AE978B029D4399F00AA62BB /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		1AE978B229D43C6F00AA62BB /* ViewModelModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelModule.swift; sourceTree = "<group>"; };
 		1AE978B429D43C7C00AA62BB /* CoordinatorModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorModule.swift; sourceTree = "<group>"; };
@@ -341,6 +343,7 @@
 			isa = PBXGroup;
 			children = (
 				1A5E873329D427C40012ACD7 /* BoardsRepository.swift */,
+				1AD2928029D8245700232D0E /* TasksRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -537,6 +540,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AD2928129D8245700232D0E /* TasksRepository.swift in Sources */,
 				1A157D8429D04956000E9EEB /* AppCoordinator.swift in Sources */,
 				1A50C61E29CB51FA00B137E3 /* MainScreen.swift in Sources */,
 				1A157D3129CDDE5D000E9EEB /* MainScreenViewModel.swift in Sources */,

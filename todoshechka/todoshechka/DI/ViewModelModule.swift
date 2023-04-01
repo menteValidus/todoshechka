@@ -6,6 +6,7 @@ extension Container {
     var createTaskViewModel: CreateTask.ViewModel {
         .init(
             boardsRepository: self.boardsRepository,
+            tasksRepository: self.tasksRepository,
             tagColorProvider: self.tagColorProvider
         )
     }
@@ -18,7 +19,10 @@ extension Container {
 extension MainScreen.ViewModel {
     final class InjectedFactory {
         func create(createTaskButtonTapped: @escaping VoidCallback) -> MainScreen.ViewModel {
-            .init(createTaskButtonTapped: createTaskButtonTapped)
+            .init(
+                tasksRepository: Container.shared.tasksRepository,
+                createTaskButtonTapped: createTaskButtonTapped
+            )
         }
     }
 }
