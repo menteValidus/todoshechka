@@ -17,6 +17,7 @@ final class CreateTaskViewModelTests: XCTestCase {
         
         sut = CreateTask.ViewModel(
             boardsRepository: boardsRepository,
+            tasksRepository: TasksRepositoryMock(),
             tagColorProvider: tagColorProvider
         )
     }
@@ -124,5 +125,18 @@ class TagColorProviderMock: ITagColorProvider {
     
     func tagColorFor(index: Int) -> Color {
         providedColor
+    }
+}
+
+import Combine
+class TasksRepositoryMock: ITasksRepository {
+    var eventPublisher: AnyPublisher<TaskRepositoryEvent, Never> = PassthroughSubject().eraseToAnyPublisher()
+    
+    func getAll() async -> [Todo.Task] {
+        []
+    }
+    
+    func createTask(name: String, description: String, deadline: Date?, boardId: Int) async {
+        
     }
 }

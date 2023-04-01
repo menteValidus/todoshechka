@@ -10,7 +10,9 @@ final class MainScreenViewModelTests: XCTestCase {
     var sut: MainScreen.ViewModel!
     
     override func setUp() {
-        sut = .init(createTaskButtonTapped: {})
+        sut = .init(
+            tasksRepository: TasksRepositoryMock(),
+            createTaskButtonTapped: {})
     }
     
     override func tearDown() {
@@ -20,6 +22,7 @@ final class MainScreenViewModelTests: XCTestCase {
     func testDataIsLoaded() async {
         let testDate = Calendar.current.date(year: 2023, month: 3, day: 20, hour: 8, minute: 0)
         sut = .init(
+            tasksRepository: TasksRepositoryMock(),
             dateGenerator: {
                 return testDate!
             },
@@ -44,6 +47,7 @@ final class MainScreenViewModelTests: XCTestCase {
     func testCreateTaskActionIsTriggered() async {
         let expectation = XCTestExpectation()
         sut = .init(
+            tasksRepository: TasksRepositoryMock(),
             createTaskButtonTapped: {
                 expectation.fulfill()
             }
