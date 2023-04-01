@@ -5,6 +5,7 @@
 @testable import todoshechka
 import XCTest
 
+@MainActor
 final class CreateTaskViewModelTests: XCTestCase {
 
     var sut: CreateTask.ViewModel!
@@ -26,7 +27,6 @@ final class CreateTaskViewModelTests: XCTestCase {
         sut = nil
     }
     
-    @MainActor
     func testDefaultDataIsLoaded() async {
         await sut.load()
 
@@ -47,12 +47,9 @@ final class CreateTaskViewModelTests: XCTestCase {
         
         await sut.load()
         
-        let boardTags = await sut.boardTags
-        XCTAssertEqual(expectedBoardTags, boardTags)
-        let selectedBoardId = await sut.selectedBoardId
-        XCTAssertEqual(boardTag.id, selectedBoardId)
-        let backgroundColor = await sut.backgroundColor
-        XCTAssertEqual(boardTag.color, backgroundColor)
+        XCTAssertEqual(expectedBoardTags, sut.boardTags)
+        XCTAssertEqual(boardTag.id, sut.selectedBoardId)
+        XCTAssertEqual(boardTag.color, sut.backgroundColor)
     }
     
     func testBoardSelectionChangesSelectedId() async {
@@ -62,13 +59,11 @@ final class CreateTaskViewModelTests: XCTestCase {
         boardsRepository.boards = [board1, board2]
         await sut.load()
 
-        await sut.selectBoard(boardId: board2.id)
+        sut.selectBoard(boardId: board2.id)
 
-        let selectedBoardId = await sut.selectedBoardId
-        XCTAssertEqual(board2.id, selectedBoardId)
+        XCTAssertEqual(board2.id, sut.selectedBoardId)
     }
     
-    @MainActor
     func testBoardSelectionChangesBackgroundColor() async {
         let board1 = Board(id: 1, name: "1")
         let board2 = Board(id: 2, name: "2")
@@ -83,7 +78,6 @@ final class CreateTaskViewModelTests: XCTestCase {
         XCTAssertEqual(expectedColor, sut.backgroundColor)
     }
     
-    @MainActor
     func testDeadlineSelected() async {
         let date = Calendar.current.date(year: 2023, month: 3, day: 30, hour: 13, minute: 44)!
         let expectedResult = DeadlinePicker.Model(
@@ -97,7 +91,6 @@ final class CreateTaskViewModelTests: XCTestCase {
         XCTAssertEqual(expectedResult, sut.deadlineModel)
     }
     
-    @MainActor
     func testCreateButtonEnabledWhenDataIsVaild() async {
         let board1 = Board(id: 1, name: "1")
         boardsRepository.boards = [board1]
@@ -108,6 +101,8 @@ final class CreateTaskViewModelTests: XCTestCase {
         
         XCTAssertTrue(sut.createButtonEnabled)
     }
+    
+    
 }
 
 class BoardRepositoryMock: IBoardsRepository {
