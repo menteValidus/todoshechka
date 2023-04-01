@@ -5,14 +5,18 @@
 @testable import todoshechka
 import XCTest
 
+@MainActor
 final class MainScreenViewModelTests: XCTestCase {
     
     var sut: MainScreen.ViewModel!
+    var tasksRepository: TasksRepositoryMock!
     
     override func setUp() {
+        tasksRepository = TasksRepositoryMock()
         sut = .init(
-            tasksRepository: TasksRepositoryMock(),
-            createTaskButtonTapped: {})
+            tasksRepository: tasksRepository,
+            createTaskButtonTapped: {}
+        )
     }
     
     override func tearDown() {
@@ -31,17 +35,14 @@ final class MainScreenViewModelTests: XCTestCase {
         
         await sut.load()
         
-        let welcomeMessage = await sut.welcomeMessage
-        let selectedFormattedDate = await sut.selectedFormattedDate
-        XCTAssertEqual(R.string.localizable.welcome_good_morning(), welcomeMessage)
-        XCTAssertEqual("Mar 20, 2023", selectedFormattedDate)
+        XCTAssertEqual(R.string.localizable.main_welcome_good_morning(), sut.welcomeMessage)
+        XCTAssertEqual("Mar 20, 2023", sut.selectedFormattedDate)
     }
     
     func testRelativeDateIsAssigned() async {
         await sut.load()
         
-        let selectedRelativeDate = await sut.selectedRelativeDate
-        XCTAssertTrue(selectedRelativeDate.contains("Today"))
+        XCTAssertTrue(sut.selectedRelativeDate.contains("Today"))
     }
     
     func testCreateTaskActionIsTriggered() async {
@@ -53,8 +54,19 @@ final class MainScreenViewModelTests: XCTestCase {
             }
         )
         
-        await sut.createTask()
+        sut.createTask()
         
         wait(for: [expectation], timeout: 0.001)
+    }
+    
+    func testDoneTasksPercentageIsCalculatedCorrectly() async {
+        tasksRepository.tasks = [
+            .init(id: 1, name: "", description: "", board: .init(id: 1, name: ""), completed: true),
+            .init(id: 1, name: "", description: "", board: .init(id: 1, name: ""), completed: false),
+        ]
+        
+        await sut.load()
+        
+        XCTAssertEqual("50% Done", sut.completedTaskPercentage)
     }
 }

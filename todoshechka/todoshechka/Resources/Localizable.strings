@@ -1,4 +1,6 @@
-"welcome_good_morning" = "Good Morning";
+"main_welcome_good_morning" = "Good Morning";
+"main_completed_tasks_percentage" = "%@ Done";
+"main_completed_tasks_subline" = "Completed Tasks";
 
 "create_task_title_placeholder" = "Task Name";
 "create_task_deadline" = "Deadline";

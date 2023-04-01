@@ -11,6 +11,7 @@ extension MainScreen {
         @Published private(set) var welcomeMessage: String = ""
         @Published private(set) var selectedRelativeDate: String = ""
         @Published private(set) var selectedFormattedDate: String = ""
+        @Published private(set) var completedTaskPercentage: String = ""
         
         @Published private(set) var taskCards: [TaskCard] = []
         
@@ -30,6 +31,13 @@ extension MainScreen {
             return dateFormatter
         }
         
+        private var percentageFormatter: NumberFormatter {
+            let formatter = NumberFormatter()
+            formatter.numberStyle = .percent
+            
+            return formatter
+        }
+        
         nonisolated init(
             tasksRepository: ITasksRepository,
             dateGenerator: @escaping DateGenerator = Date.init,
@@ -41,7 +49,7 @@ extension MainScreen {
         }
         
         func load() async {
-            welcomeMessage = R.string.localizable.welcome_good_morning()
+            welcomeMessage = R.string.localizable.main_welcome_good_morning()
             
             let relativeWeekDayFormatter = RelativeWeekDayFormatter(todayGenerator: dateGenerator)
             selectedRelativeDate = relativeWeekDayFormatter.string(from: dateGenerator()) ?? ""
@@ -56,10 +64,18 @@ extension MainScreen {
         
         private func loadTasks() async {
             tasks = await tasksRepository.getAll()
-            
+            updateTaskCards(withTasks: tasks)
+        }
+        
+        private func updateTaskCards(withTasks tasks: [Todo.Task]) {
             taskCards = tasks.map { task in
                 mapTaskToCard(task)
             }
+            
+            let completedTasks = tasks.filter({ $0.completed })
+            let completedTasksRatio = Float(completedTasks.count) / Float(tasks.count)
+            let percentage = percentageFormatter.string(from: NSNumber(value: completedTasksRatio)) ?? ""
+            completedTaskPercentage = R.string.localizable.main_completed_tasks_percentage(percentage)
         }
         
         private func mapTaskToCard(_ task: Todo.Task) -> TaskCard {

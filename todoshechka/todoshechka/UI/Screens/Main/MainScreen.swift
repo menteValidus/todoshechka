@@ -11,7 +11,8 @@ struct MainScreen: View {
         ZStack(alignment: .bottom) {
             ScrollView {
                 VStack {
-                    topView
+                    // TODO: return when backend's introduced
+//                    topView
                     welcomeMessage
                         .padding(.bottom)
                     summary
@@ -71,7 +72,7 @@ extension MainScreen {
                 Text("75% Done")
                     .foregroundColor(R.color.onPrimaryVariant3.color)
                     .font(.body)
-                Text("Completed Tasks")
+                Text(R.string.localizable.main_completed_tasks_subline())
                     .foregroundColor(R.color.onPrimaryVariant4.color)
                     .font(.caption)
             }
