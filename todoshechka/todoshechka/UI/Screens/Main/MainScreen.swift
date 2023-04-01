@@ -68,13 +68,15 @@ extension MainScreen {
             
             Spacer()
             
-            VStack(alignment: .trailing) {
-                Text("75% Done")
-                    .foregroundColor(R.color.onPrimaryVariant3.color)
-                    .font(.body)
-                Text(R.string.localizable.main_completed_tasks_subline())
-                    .foregroundColor(R.color.onPrimaryVariant4.color)
-                    .font(.caption)
+            if let percentage = viewModel.completedTaskPercentage {
+                VStack(alignment: .trailing) {
+                    Text(percentage)
+                        .foregroundColor(R.color.onPrimaryVariant3.color)
+                        .font(.body)
+                    Text(R.string.localizable.main_completed_tasks_subline())
+                        .foregroundColor(R.color.onPrimaryVariant4.color)
+                        .font(.caption)
+                }
             }
         }
     }
