@@ -11,7 +11,7 @@ extension MainScreen {
         @Published private(set) var welcomeMessage: String = ""
         @Published private(set) var selectedRelativeDate: String = ""
         @Published private(set) var selectedFormattedDate: String = ""
-        @Published private(set) var completedTaskPercentage: String = ""
+        @Published private(set) var completedTaskPercentage: String?
         
         @Published private(set) var taskCards: [TaskCard] = []
         
@@ -71,6 +71,12 @@ extension MainScreen {
             taskCards = tasks.map { task in
                 mapTaskToCard(task)
             }
+            
+            updatePercentage(withTasks: tasks)
+        }
+        
+        private func updatePercentage(withTasks tasks: [Todo.Task]) {
+            guard !tasks.isEmpty else { return }
             
             let completedTasks = tasks.filter({ $0.completed })
             let completedTasksRatio = Float(completedTasks.count) / Float(tasks.count)

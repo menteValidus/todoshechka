@@ -26,7 +26,7 @@ final class MainScreenViewModelTests: XCTestCase {
     func testDataIsLoaded() async {
         let testDate = Calendar.current.date(year: 2023, month: 3, day: 20, hour: 8, minute: 0)
         sut = .init(
-            tasksRepository: TasksRepositoryMock(),
+            tasksRepository: tasksRepository,
             dateGenerator: {
                 return testDate!
             },
@@ -37,6 +37,7 @@ final class MainScreenViewModelTests: XCTestCase {
         
         XCTAssertEqual(R.string.localizable.main_welcome_good_morning(), sut.welcomeMessage)
         XCTAssertEqual("Mar 20, 2023", sut.selectedFormattedDate)
+        XCTAssertNil(sut.completedTaskPercentage)
     }
     
     func testRelativeDateIsAssigned() async {
