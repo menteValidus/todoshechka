@@ -21,6 +21,7 @@ extension MainScreen.ViewModel {
         func create(createTaskButtonTapped: @escaping VoidCallback) -> MainScreen.ViewModel {
             .init(
                 tasksRepository: Container.shared.tasksRepository,
+                boardsRepository: Container.shared.boardsRepository,
                 createTaskButtonTapped: createTaskButtonTapped
             )
         }

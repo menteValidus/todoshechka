@@ -15,10 +15,19 @@ extension MainScreen {
         
         @Published private(set) var taskCards: [TaskCard] = []
         
+        var tasksNumber: Int {
+            taskCards.count
+        }
+        
+        var boardsNumber: Int {
+            boards.count
+        }
+        
         private var tasks: [Todo.Task] = []
         private var boards: [Board] = []
         
         private let tasksRepository: ITasksRepository
+        private let boardsRepository: IBoardsRepository
         private let dateGenerator: DateGenerator
         
         private let createTaskButtonTapped: VoidCallback
@@ -40,10 +49,12 @@ extension MainScreen {
         
         nonisolated init(
             tasksRepository: ITasksRepository,
+            boardsRepository: IBoardsRepository,
             dateGenerator: @escaping DateGenerator = Date.init,
             createTaskButtonTapped: @escaping VoidCallback
         ) {
             self.tasksRepository = tasksRepository
+            self.boardsRepository = boardsRepository
             self.dateGenerator = dateGenerator
             self.createTaskButtonTapped = createTaskButtonTapped
         }
@@ -56,6 +67,7 @@ extension MainScreen {
             selectedFormattedDate = dateFormatter.string(from: dateGenerator())
             
             await loadTasks()
+            await loadBoards()
         }
         
         func createTask() {
@@ -65,6 +77,10 @@ extension MainScreen {
         private func loadTasks() async {
             tasks = await tasksRepository.getAll()
             updateTaskCards(withTasks: tasks)
+        }
+        
+        private func loadBoards() async {
+            boards = await boardsRepository.getAll()
         }
         
         private func updateTaskCards(withTasks tasks: [Todo.Task]) {

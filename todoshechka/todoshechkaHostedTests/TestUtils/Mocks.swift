@@ -6,7 +6,7 @@
 import SwiftUI
 import Combine
 
-class BoardRepositoryMock: IBoardsRepository {
+class BoardsRepositoryMock: IBoardsRepository {
     var boards: [Board] = []
     
     func getAll() async -> [Board] {

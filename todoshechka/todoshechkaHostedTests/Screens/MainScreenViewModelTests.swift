@@ -10,13 +10,12 @@ final class MainScreenViewModelTests: XCTestCase {
     
     var sut: MainScreen.ViewModel!
     var tasksRepository: TasksRepositoryMock!
+    var boardsRepository: BoardsRepositoryMock!
     
     override func setUp() {
         tasksRepository = TasksRepositoryMock()
-        sut = .init(
-            tasksRepository: tasksRepository,
-            createTaskButtonTapped: {}
-        )
+        boardsRepository = BoardsRepositoryMock()
+        sut = createSut()
     }
     
     override func tearDown() {
@@ -25,12 +24,10 @@ final class MainScreenViewModelTests: XCTestCase {
     
     func testDataIsLoaded() async {
         let testDate = Calendar.current.date(year: 2023, month: 3, day: 20, hour: 8, minute: 0)
-        sut = .init(
-            tasksRepository: tasksRepository,
+        sut = createSut(
             dateGenerator: {
                 return testDate!
-            },
-            createTaskButtonTapped: {}
+            }
         )
         
         await sut.load()
@@ -48,8 +45,7 @@ final class MainScreenViewModelTests: XCTestCase {
     
     func testCreateTaskActionIsTriggered() async {
         let expectation = XCTestExpectation()
-        sut = .init(
-            tasksRepository: TasksRepositoryMock(),
+        sut = createSut(
             createTaskButtonTapped: {
                 expectation.fulfill()
             }
@@ -69,5 +65,35 @@ final class MainScreenViewModelTests: XCTestCase {
         await sut.load()
         
         XCTAssertEqual("50% Done", sut.completedTaskPercentage)
+    }
+    
+    func testTasksNumberCalculatedCorrectly() async {
+        tasksRepository.tasks = [
+            .init(id: 1, name: "", description: "", board: .init(id: 1, name: ""))
+        ]
+        
+        await sut.load()
+        
+        XCTAssertEqual(sut.tasksNumber, 1)
+    }
+    
+    func testBoardsNumberCalculatedCorrectly() async {
+        boardsRepository.boards = [.init(id: 1, name: "")]
+        
+        await sut.load()
+        
+        XCTAssertEqual(sut.boardsNumber, 1)
+    }
+    
+    private func createSut(
+        dateGenerator: @escaping DateGenerator = Date.init,
+        createTaskButtonTapped: @escaping VoidCallback = {}
+    ) -> MainScreen.ViewModel {
+        .init(
+            tasksRepository: tasksRepository,
+            boardsRepository: boardsRepository,
+            dateGenerator: dateGenerator,
+            createTaskButtonTapped: createTaskButtonTapped
+        )
     }
 }

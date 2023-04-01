@@ -1,6 +1,8 @@
 "main_welcome_good_morning" = "Good Morning";
 "main_completed_tasks_percentage" = "%@ Done";
 "main_completed_tasks_subline" = "Completed Tasks";
+"main_picker_section_tasks" = "Tasks";
+"main_picker_section_boards" = "Boards";
 
 "create_task_title_placeholder" = "Task Name";
 "create_task_deadline" = "Deadline";

@@ -5,18 +5,21 @@
 import SwiftUI
 
 struct StyledPicker: View {
+    let tasksNumber: Int
+    let boardsNumber: Int
+    
     var body: some View {
         VStack {
             HStack {
                 HStack {
-                    Text("12")
+                    Text("\(tasksNumber)")
                         .padding(.horizontal, 8)
                         .padding(.vertical, 4)
                         .font(.body)
                         .background(R.color.secondary2.color)
                         .foregroundColor(R.color.onSecondary2.color)
                         .clipShape(Capsule())
-                    Text("Tasks")
+                    Text(R.string.localizable.main_picker_section_tasks())
                         .font(.largeTitle.weight(.light))
                         .foregroundColor(R.color.onPrimaryVariant1.color)
                 }
@@ -24,7 +27,7 @@ struct StyledPicker: View {
                 Spacer()
                 
                 HStack {
-                    Text("3")
+                    Text("\(boardsNumber)")
                         .foregroundColor(R.color.onPrimaryVariant4.color)
                         .padding(.horizontal, 8)
                         .padding(.vertical, 4)
@@ -32,7 +35,7 @@ struct StyledPicker: View {
                         .overlay(
                             Capsule().stroke( R.color.onPrimaryVariant4.color)
                         )
-                    Text("Boards")
+                    Text(R.string.localizable.main_picker_section_boards())
                         .foregroundColor(R.color.onPrimaryVariant4.color)
                         .font(.largeTitle.weight(.light))
                 }
@@ -52,9 +55,12 @@ struct StyledPicker: View {
 
 struct StyledPicker_Previews: PreviewProvider {
     static var previews: some View {
-        StyledPicker()
-            .padding()
-            .background(Color.black)
-            .previewLayout(.sizeThatFits)
+        StyledPicker(
+            tasksNumber: 12,
+            boardsNumber: 3
+        )
+        .padding()
+        .background(Color.black)
+        .previewLayout(.sizeThatFits)
     }
 }

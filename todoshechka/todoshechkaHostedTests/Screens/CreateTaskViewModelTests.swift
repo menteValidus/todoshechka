@@ -9,7 +9,7 @@ import XCTest
 final class CreateTaskViewModelTests: XCTestCase {
 
     var sut: CreateTask.ViewModel!
-    var boardsRepository: BoardRepositoryMock!
+    var boardsRepository: BoardsRepositoryMock!
     var tasksRepository: TasksRepositoryMock!
     var tagColorProvider: TagColorProviderMock!
     

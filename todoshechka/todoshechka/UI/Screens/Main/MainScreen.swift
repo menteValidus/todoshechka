@@ -16,7 +16,10 @@ struct MainScreen: View {
                     welcomeMessage
                         .padding(.bottom)
                     summary
-                    StyledPicker()
+                    StyledPicker(
+                        tasksNumber: viewModel.tasksNumber,
+                        boardsNumber: viewModel.boardsNumber
+                    )
                         .padding(.top)
                     taskCards
                         .padding(.top)
