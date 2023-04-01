@@ -126,36 +126,3 @@ final class CreateTaskViewModelTests: XCTestCase {
         XCTAssertEqual(expectedBoardId, tasksRepository.createdTaskInfo?.boardId)
     }
 }
-
-class BoardRepositoryMock: IBoardsRepository {
-    var boards: [Board] = []
-    
-    func getAll() async -> [Board] {
-        boards
-    }
-}
-
-import SwiftUI
-
-class TagColorProviderMock: ITagColorProvider {
-    var providedColor: Color = .black
-    
-    func tagColorFor(index: Int) -> Color {
-        providedColor
-    }
-}
-
-import Combine
-class TasksRepositoryMock: ITasksRepository {
-    typealias CreatedTaskInfo = (name: String, description: String, deadline: Date?, boardId: Int)
-    var eventPublisher: AnyPublisher<TaskRepositoryEvent, Never> = PassthroughSubject().eraseToAnyPublisher()
-    
-    func getAll() async -> [Todo.Task] {
-        []
-    }
-    
-    var createdTaskInfo: CreatedTaskInfo?
-    func createTask(name: String, description: String, deadline: Date?, boardId: Int) async {
-        createdTaskInfo = (name: name, description: description, deadline: deadline, boardId: boardId)
-    }
-}
