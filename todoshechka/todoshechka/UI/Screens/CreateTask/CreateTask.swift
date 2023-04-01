@@ -55,12 +55,7 @@ struct CreateTask: View {
             VStack {
                 Spacer()
                 
-                Button(action: {}) {
-                    Image(systemName: "checkmark")
-                        .foregroundColor(R.color.onPrimaryVariant3.color)
-                }
-                .disabled(!viewModel.createButtonEnabled)
-                .buttonStyle(CircleButtonStyle(backgroundColor: R.color.primary.color))
+                createTaskButton
                 .frame(width: 80)
                 .padding()
             }
@@ -123,6 +118,20 @@ private extension CreateTask {
                   axis: .vertical
         )
         .frame(maxWidth: .infinity, alignment: .leading)
+    }
+    
+    var createTaskButton: some View {
+        Button(action: {
+            Task {
+                await viewModel.createTask()
+                dismiss()
+            }
+        }) {
+            Image(systemName: "checkmark")
+                .foregroundColor(R.color.onPrimaryVariant3.color)
+        }
+        .disabled(!viewModel.createButtonEnabled)
+        .buttonStyle(CircleButtonStyle(backgroundColor: R.color.primary.color))
     }
 }
 
