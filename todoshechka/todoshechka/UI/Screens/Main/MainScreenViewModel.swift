@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 extension MainScreen {
     @MainActor
@@ -28,9 +29,12 @@ extension MainScreen {
         
         private let tasksRepository: ITasksRepository
         private let boardsRepository: IBoardsRepository
+        private let tagColorProvider: ITagColorProvider
         private let dateGenerator: DateGenerator
         
         private let createTaskButtonTapped: VoidCallback
+        
+        private var cancelBag: Set<Task<(), Never>> = []
         
         private var dateFormatter: DateFormatter {
             let dateFormatter = DateFormatter()
@@ -47,16 +51,38 @@ extension MainScreen {
             return formatter
         }
         
+        private var remainingTimeFormatter: DateComponentsFormatter {
+            let formatter = DateComponentsFormatter()
+            formatter.unitsStyle = .abbreviated
+            formatter.zeroFormattingBehavior = .pad
+            formatter.allowedUnits = [.hour, .minute]
+            
+            return formatter
+        }
+        
         nonisolated init(
             tasksRepository: ITasksRepository,
             boardsRepository: IBoardsRepository,
+            tagColorProvider: ITagColorProvider,
             dateGenerator: @escaping DateGenerator = Date.init,
             createTaskButtonTapped: @escaping VoidCallback
         ) {
             self.tasksRepository = tasksRepository
             self.boardsRepository = boardsRepository
+            self.tagColorProvider = tagColorProvider
             self.dateGenerator = dateGenerator
             self.createTaskButtonTapped = createTaskButtonTapped
+            
+            Task {
+                await subscribeToRepositoriesEvents()
+            }
+        }
+        
+        deinit {
+            cancelBag.forEach { task in
+                task.cancel()
+            }
+            cancelBag.removeAll()
         }
         
         func load() async {
@@ -74,6 +100,25 @@ extension MainScreen {
             createTaskButtonTapped()
         }
         
+        private func subscribeToRepositoriesEvents() {
+            let taskEventsTask = Task { [weak self] in
+                guard let self = self else { return }
+                
+                for await event in self.tasksRepository.eventPublisher.values {
+                    self.handleTaskEvent(event)
+                }
+            }
+            cancelBag.insert(taskEventsTask)
+        }
+        
+        private func handleTaskEvent(_ event: TaskRepositoryEvent) {
+            switch event {
+            case .added(let task):
+                tasks.insert(task, at: 0)
+                updateTaskCards(withTasks: tasks)
+            }
+        }
+        
         private func loadTasks() async {
             tasks = await tasksRepository.getAll()
             updateTaskCards(withTasks: tasks)
@@ -84,8 +129,8 @@ extension MainScreen {
         }
         
         private func updateTaskCards(withTasks tasks: [Todo.Task]) {
-            taskCards = tasks.map { task in
-                mapTaskToCard(task)
+            taskCards = tasks.enumerated().map { index, task in
+                mapTaskToCard(task, withColor: tagColorProvider.tagColorFor(index: index))
             }
             
             updatePercentage(withTasks: tasks)
@@ -100,14 +145,18 @@ extension MainScreen {
             completedTaskPercentage = R.string.localizable.main_completed_tasks_percentage(percentage)
         }
         
-        private func mapTaskToCard(_ task: Todo.Task) -> TaskCard {
-            TaskCard(
+        private func mapTaskToCard(_ task: Todo.Task, withColor color: Color) -> TaskCard {
+            let remainingTime = task.deadline == nil
+            ? nil
+            : remainingTimeFormatter.string(from: task.deadline!.timeIntervalSince(dateGenerator()))
+            
+            return TaskCard(
                 id: task.id,
                 name: task.name,
                 boardName: task.board.name,
-                remainingTime: "todo",
+                remainingTime: remainingTime,
                 completed: task.completed,
-                tagColor: R.color.tags.accent1.color
+                tagColor: color
             )
         }
     }

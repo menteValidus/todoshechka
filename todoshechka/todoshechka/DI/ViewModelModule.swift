@@ -22,6 +22,7 @@ extension MainScreen.ViewModel {
             .init(
                 tasksRepository: Container.shared.tasksRepository,
                 boardsRepository: Container.shared.boardsRepository,
+                tagColorProvider: Container.shared.tagColorProvider,
                 createTaskButtonTapped: createTaskButtonTapped
             )
         }

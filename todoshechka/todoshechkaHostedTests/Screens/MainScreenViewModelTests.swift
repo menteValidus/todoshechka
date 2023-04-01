@@ -11,10 +11,12 @@ final class MainScreenViewModelTests: XCTestCase {
     var sut: MainScreen.ViewModel!
     var tasksRepository: TasksRepositoryMock!
     var boardsRepository: BoardsRepositoryMock!
+    var tagColorProvider: TagColorProviderMock!
     
     override func setUp() {
         tasksRepository = TasksRepositoryMock()
         boardsRepository = BoardsRepositoryMock()
+        tagColorProvider = TagColorProviderMock()
         sut = createSut()
     }
     
@@ -85,6 +87,22 @@ final class MainScreenViewModelTests: XCTestCase {
         XCTAssertEqual(sut.boardsNumber, 1)
     }
     
+    func testTaskCreatedOutside() async {
+        tasksRepository.tasks = []
+        await sut.load()
+        
+        let expectedTask = TaskCard(
+            id: 1, name: "", boardName: "", remainingTime: nil, completed: false, tagColor: tagColorProvider.providedColor
+        )
+        let task = Todo.Task(
+            id: expectedTask.id, name: expectedTask.name, description: "", board: .init(id: 1, name: expectedTask.boardName)
+        )
+        tasksRepository._eventPublisher.send(.added(task))
+        await Task.yield()
+        
+        XCTAssertEqual([expectedTask], sut.taskCards)
+    }
+    
     private func createSut(
         dateGenerator: @escaping DateGenerator = Date.init,
         createTaskButtonTapped: @escaping VoidCallback = {}
@@ -92,6 +110,7 @@ final class MainScreenViewModelTests: XCTestCase {
         .init(
             tasksRepository: tasksRepository,
             boardsRepository: boardsRepository,
+            tagColorProvider: tagColorProvider,
             dateGenerator: dateGenerator,
             createTaskButtonTapped: createTaskButtonTapped
         )

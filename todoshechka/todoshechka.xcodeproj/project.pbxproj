@@ -37,7 +37,6 @@
 		1A5E872629D33D720012ACD7 /* CreateTaskViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E872529D33D720012ACD7 /* CreateTaskViewModelTests.swift */; };
 		1A5E872929D33F390012ACD7 /* BoardTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E872829D33F390012ACD7 /* BoardTag.swift */; };
 		1A5E873429D427C40012ACD7 /* BoardsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E873329D427C40012ACD7 /* BoardsRepository.swift */; };
-		1A5E873929D42E1C0012ACD7 /* RepositoryModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E873829D42E1C0012ACD7 /* RepositoryModule.swift */; };
 		1A6161DC29CC62CC00C7E63B /* StyledPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6161DB29CC62CC00C7E63B /* StyledPicker.swift */; };
 		1AD2928129D8245700232D0E /* TasksRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD2928029D8245700232D0E /* TasksRepository.swift */; };
 		1AD2928D29D8414600232D0E /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD2928C29D8414600232D0E /* Mocks.swift */; };
@@ -97,7 +96,6 @@
 		1A5E872529D33D720012ACD7 /* CreateTaskViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateTaskViewModelTests.swift; path = todoshechkaHostedTests/Screens/CreateTaskViewModelTests.swift; sourceTree = SOURCE_ROOT; };
 		1A5E872829D33F390012ACD7 /* BoardTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTag.swift; sourceTree = "<group>"; };
 		1A5E873329D427C40012ACD7 /* BoardsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardsRepository.swift; sourceTree = "<group>"; };
-		1A5E873829D42E1C0012ACD7 /* RepositoryModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryModule.swift; sourceTree = "<group>"; };
 		1A6161DB29CC62CC00C7E63B /* StyledPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledPicker.swift; sourceTree = "<group>"; };
 		1AD2928029D8245700232D0E /* TasksRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksRepository.swift; sourceTree = "<group>"; };
 		1AD2928C29D8414600232D0E /* Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
@@ -356,7 +354,6 @@
 			isa = PBXGroup;
 			children = (
 				1AE978B029D4399F00AA62BB /* Container.swift */,
-				1A5E873829D42E1C0012ACD7 /* RepositoryModule.swift */,
 				1AE978B229D43C6F00AA62BB /* ViewModelModule.swift */,
 				1AE978B429D43C7C00AA62BB /* CoordinatorModule.swift */,
 				1A22EBF429D450FF00F50DA2 /* ProviderModule.swift */,
@@ -542,7 +539,6 @@
 				1A157D3129CDDE5D000E9EEB /* MainScreenViewModel.swift in Sources */,
 				1AE978B329D43C6F00AA62BB /* ViewModelModule.swift in Sources */,
 				1AE978B529D43C7C00AA62BB /* CoordinatorModule.swift in Sources */,
-				1A5E873929D42E1C0012ACD7 /* RepositoryModule.swift in Sources */,
 				1A157D9D29D2F5BA000E9EEB /* CircleButtonStyle.swift in Sources */,
 				1A5E873429D427C40012ACD7 /* BoardsRepository.swift in Sources */,
 				1A157D9A29D2E09E000E9EEB /* CreateTask.swift in Sources */,

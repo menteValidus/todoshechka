@@ -5,7 +5,7 @@
 import Foundation
 import SwiftUI
 
-struct TaskCard: Identifiable {
+struct TaskCard: Identifiable, Equatable {
     let id: Int
     let name: String
     let boardName: String

@@ -25,7 +25,13 @@ class TagColorProviderMock: ITagColorProvider {
 class TasksRepositoryMock: ITasksRepository {
     typealias CreatedTaskInfo = (name: String, description: String, deadline: Date?, boardId: Int)
     
-    var eventPublisher: AnyPublisher<TaskRepositoryEvent, Never> = PassthroughSubject().eraseToAnyPublisher()
+    var _eventPublisher: PassthroughSubject<TaskRepositoryEvent, Never>
+    var eventPublisher: AnyPublisher<TaskRepositoryEvent, Never>
+    
+    init() {
+        self._eventPublisher = .init()
+        self.eventPublisher = _eventPublisher.eraseToAnyPublisher()
+    }
     
     var tasks: [Todo.Task] = []
     func getAll() async -> [Todo.Task] {
