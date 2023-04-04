@@ -36,6 +36,40 @@ final class CreateTaskViewModelTests: XCTestCase {
         XCTAssertTrue(sut.taskName.isEmpty, "\(sut.taskName) is not empty")
         XCTAssertTrue(sut.description.isEmpty, "\(sut.description) is not empty")
         XCTAssertFalse(sut.createButtonEnabled)
+        XCTAssertFalse(sut.containsData)
+    }
+    
+    func testContainsDataIsTrue() async {
+        await sut.load()
+        
+        sut.taskName = "Task"
+        sut.description = "Description"
+        sut.selectDate(date: Date())
+        
+        XCTAssertTrue(sut.containsData)
+    }
+    
+    func testContainsDataIsTrueWhenTaskNameFilled() async {
+        await sut.load()
+        
+        sut.taskName = "Task"
+        
+        XCTAssertTrue(sut.containsData)
+    }
+    
+    func testContainsDataIsTrueWhenDescriptionFilled() async {
+        await sut.load()
+        
+        sut.description = "Description"
+        XCTAssertTrue(sut.containsData)
+    }
+    
+    func testContainsDataIsTrueWhenDeadlineSelected() async {
+        await sut.load()
+        
+        sut.selectDate(date: Date())
+        
+        XCTAssertTrue(sut.containsData)
     }
     
     func testBoardTagsAreLoaded() async {

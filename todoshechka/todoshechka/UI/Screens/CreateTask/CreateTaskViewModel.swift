@@ -24,6 +24,12 @@ extension CreateTask {
             }
         }
         
+        var containsData: Bool {
+            !taskName.isEmpty
+            || !description.isEmpty
+            || deadlineModel != nil
+        }
+        
         @Published private(set) var createButtonEnabled = false
         
         private var boards: [Board] = []

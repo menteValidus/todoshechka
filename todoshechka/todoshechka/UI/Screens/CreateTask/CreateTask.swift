@@ -14,6 +14,7 @@ struct CreateTask: View {
     @Environment(\.dismiss) var dismiss
     @FocusState private var focusedField: FocusedField?
     @State private var isEditingDate = false
+    @State private var isShowingAlert = false
     
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -46,6 +47,17 @@ struct CreateTask: View {
             focusedField = .title
         }
         .preferredColorScheme(.light)
+        .alert(
+            "Are you sure to discard changes?",
+            isPresented: $isShowingAlert,
+            actions: {
+                Button(
+                    role: .destructive,
+                    action: dismiss.callAsFunction,
+                    label: { Text("Yes") }
+                )
+            }
+        )
         .scrollDismissesKeyboard(.interactively)
         .background(
             viewModel.backgroundColor
@@ -65,7 +77,15 @@ struct CreateTask: View {
 
 private extension CreateTask {
     func cancelTapped() {
-        dismiss() // TODO: Change to show alert
+        if viewModel.containsData {
+            isShowingAlert = true
+        } else {
+            dismiss()
+        }
+    }
+    
+    func alertDismissed() {
+        isShowingAlert = false
     }
 }
 
