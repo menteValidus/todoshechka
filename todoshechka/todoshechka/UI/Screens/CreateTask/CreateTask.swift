@@ -5,14 +5,11 @@
 import SwiftUI
 
 struct CreateTask: View {
-    private enum FocusedField {
-        case title, description
-    }
     
     @ObservedObject var viewModel: ViewModel
     
     @Environment(\.dismiss) var dismiss
-    @FocusState private var focusedField: FocusedField?
+    
     @State private var isEditingDate = false
     @State private var isShowingAlert = false
     
@@ -21,30 +18,23 @@ struct CreateTask: View {
             VStack(alignment: .leading) {
                 topActionItems
                 
-                boards
-                    .padding(.top)
-                
-                taskTitleField
-                    .focused($focusedField, equals: .title)
-                    .padding(.top)
-                
-                DeadlinePicker(
-                    model: viewModel.deadlineModel,
-                    onDateSelected: { date in
+                TaskDetailsForm(
+                    boardTags: viewModel.boardTags,
+                    selectedBoardId: viewModel.selectedBoardId,
+                    taskName: $viewModel.taskName,
+                    description: $viewModel.description,
+                    deadlineModel: viewModel.deadlineModel,
+                    dateSelected: { date in
                         viewModel.selectDate(date: date)
+                    },
+                    boardSelected: { boardId in
+                        viewModel.selectBoard(boardId: boardId)
                     }
                 )
-                
-                descriptionField
-                    .focused($focusedField, equals: .description)
-                    .padding(.top)
-                
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.horizontal, 24)
-        }
-        .onAppear {
-            focusedField = .title
+            .task {
+                await viewModel.load()
+            }
         }
         .preferredColorScheme(.light)
         .alert(
@@ -100,44 +90,6 @@ private extension CreateTask {
             .buttonStyle(CircleButtonStyle(backgroundColor: R.color.primary.color))
             .frame(width: 40)
         }
-    }
-    
-    var boards: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack {
-                ForEach(viewModel.boardTags) { model in
-                    BoardTag(
-                        model: model,
-                        selected: model.id == viewModel.selectedBoardId,
-                        action: {
-                            viewModel.selectBoard(boardId: model.id)
-                        }
-                    )
-                }
-            }
-        }
-        .onAppear {
-            Task {
-                await viewModel.load()
-            }
-        }
-    }
-    
-    var taskTitleField: some View {
-        TextField(
-            R.string.localizable.create_task_title_placeholder(),
-            text: $viewModel.taskName,
-            axis: .vertical
-        )
-        .font(.system(size: 74))
-    }
-    
-    var descriptionField: some View {
-        TextField(R.string.localizable.create_task_description_placeholder(),
-                  text: $viewModel.description,
-                  axis: .vertical
-        )
-        .frame(maxWidth: .infinity, alignment: .leading)
     }
     
     var createTaskButton: some View {
