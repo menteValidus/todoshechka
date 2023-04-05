@@ -17,6 +17,7 @@ struct CreateTask: View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading) {
                 topActionItems
+                    .padding(.horizontal, 24)
                 
                 TaskDetailsForm(
                     boardTags: viewModel.boardTags,
