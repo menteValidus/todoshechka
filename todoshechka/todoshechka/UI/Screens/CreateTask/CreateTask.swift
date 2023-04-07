@@ -10,7 +10,6 @@ struct CreateTask: View {
     
     @Environment(\.dismiss) var dismiss
     
-    @State private var isEditingDate = false
     @State private var isShowingAlert = false
     
     var body: some View {

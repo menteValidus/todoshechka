@@ -5,6 +5,7 @@
 import SwiftUI
 
 struct TaskDetailsForm<Content: View>: View {
+    @ViewBuilder
     let toolbarItem: () -> Content
     let backgroundColor: Color
     let boardTags: [BoardTag.Model]
