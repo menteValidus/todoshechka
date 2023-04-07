@@ -11,6 +11,7 @@ struct TaskDetails: View {
     
     var body: some View {
         TaskDetailsForm(
+            isEditing: isEditing,
             toolbarItem: {
                 toolbarButton
             },

@@ -95,6 +95,9 @@ extension MainScreen {
                     backgroundColor: taskCard.tagColor,
                     onComplete: {}
                 )
+                .onTapGesture {
+                    viewModel.taskCardTapped(taskId: taskCard.id)
+                }
             }
         }
     }
@@ -111,7 +114,10 @@ extension MainScreen {
 
 struct MainScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        MainScreen(viewModel: Container.shared.mainScreenViewModelFactory.create { })
+        MainScreen(viewModel: Container.shared.mainScreenViewModelFactory.create
+                   { }
+                   taskTapped: { _ in }
+        )
             .preferredColorScheme(.dark)
     }
 }

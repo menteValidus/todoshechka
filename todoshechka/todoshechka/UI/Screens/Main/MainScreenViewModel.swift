@@ -33,6 +33,7 @@ extension MainScreen {
         private let dateGenerator: DateGenerator
         
         private let createTaskButtonTapped: VoidCallback
+        private let taskTapped: (Int) -> Void
         
         private var cancelBag: Set<Task<(), Never>> = []
         
@@ -65,13 +66,15 @@ extension MainScreen {
             boardsRepository: IBoardsRepository,
             tagColorProvider: ITagColorProvider,
             dateGenerator: @escaping DateGenerator = Date.init,
-            createTaskButtonTapped: @escaping VoidCallback
+            createTaskButtonTapped: @escaping VoidCallback,
+            taskTapped: @escaping (Int) -> Void
         ) {
             self.tasksRepository = tasksRepository
             self.boardsRepository = boardsRepository
             self.tagColorProvider = tagColorProvider
             self.dateGenerator = dateGenerator
             self.createTaskButtonTapped = createTaskButtonTapped
+            self.taskTapped = taskTapped
             
             Task {
                 await subscribeToRepositoriesEvents()
@@ -98,6 +101,10 @@ extension MainScreen {
         
         func createTask() {
             createTaskButtonTapped()
+        }
+        
+        func taskCardTapped(taskId: Int) {
+            taskTapped(taskId)
         }
         
         private func subscribeToRepositoriesEvents() {

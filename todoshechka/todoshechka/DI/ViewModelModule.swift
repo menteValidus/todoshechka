@@ -18,12 +18,16 @@ extension Container {
 
 extension MainScreen.ViewModel {
     final class InjectedFactory {
-        func create(createTaskButtonTapped: @escaping VoidCallback) -> MainScreen.ViewModel {
+        func create(
+            createTaskButtonTapped: @escaping VoidCallback,
+            taskTapped: @escaping (Int) -> Void
+        ) -> MainScreen.ViewModel {
             .init(
                 tasksRepository: Container.shared.tasksRepository,
                 boardsRepository: Container.shared.boardsRepository,
                 tagColorProvider: Container.shared.tagColorProvider,
-                createTaskButtonTapped: createTaskButtonTapped
+                createTaskButtonTapped: createTaskButtonTapped,
+                taskTapped: taskTapped
             )
         }
     }

@@ -17,6 +17,12 @@ extension MainScreen {
                         CreateTask.CoordinatorView()
                     }
                 )
+                .fullScreenCover(
+                    isPresented: $object.taskDetailsAppears,
+                    content: {
+                        TaskDetails()
+                    }
+                )
         }
     }
     
@@ -24,13 +30,21 @@ extension MainScreen {
         @Published private(set) var viewModel: ViewModel!
         
         @Published var createTaskAppears = false
+        @Published var taskDetailsAppears = false
         
         init(viewModelFactory: ViewModel.InjectedFactory) {
-            viewModel = viewModelFactory.create(createTaskButtonTapped: navigateToCreateTask)
+            viewModel = viewModelFactory.create(
+                createTaskButtonTapped: navigateToCreateTask,
+                taskTapped: navigateToTaskDetails
+            )
         }
         
         private func navigateToCreateTask() {
             createTaskAppears = true
+        }
+        
+        private func navigateToTaskDetails(taskId: Int) {
+            taskDetailsAppears = true
         }
     }
 }

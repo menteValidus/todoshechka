@@ -5,7 +5,7 @@
 import SwiftUI
 
 struct TaskDetailsForm<Content: View>: View {
-    @ViewBuilder
+    var isEditing = true
     let toolbarItem: () -> Content
     let backgroundColor: Color
     let boardTags: [BoardTag.Model]
@@ -47,8 +47,17 @@ struct TaskDetailsForm<Content: View>: View {
             .padding(.horizontal, 24)
         }
         .onAppear {
-            focusedField = .title
+            if isEditing {
+                focusedField = .title
+            }
         }
+        .onChange(of: isEditing, perform: { isEditing in
+            if isEditing {
+                refocus()
+            } else {
+                dropFocus()
+            }
+        })
         .preferredColorScheme(.light)
         .scrollDismissesKeyboard(.interactively)
         .background(
@@ -122,6 +131,16 @@ private extension TaskDetailsForm {
         }
         .disabled(!fabEnabled)
         .buttonStyle(CircleButtonStyle(backgroundColor: R.color.primary.color))
+    }
+}
+
+private extension TaskDetailsForm {
+    func refocus() {
+        focusedField = .title
+    }
+    
+    func dropFocus() {
+        focusedField = nil
     }
 }
 
