@@ -40,6 +40,7 @@
 		1A5E872929D33F390012ACD7 /* BoardTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E872829D33F390012ACD7 /* BoardTag.swift */; };
 		1A5E873429D427C40012ACD7 /* BoardsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E873329D427C40012ACD7 /* BoardsRepository.swift */; };
 		1A6161DC29CC62CC00C7E63B /* StyledPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6161DB29CC62CC00C7E63B /* StyledPicker.swift */; };
+		1AA951B029E06A6B009467FC /* DefaultAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA951AF29E06A6B009467FC /* DefaultAnimation.swift */; };
 		1AD2928129D8245700232D0E /* TasksRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD2928029D8245700232D0E /* TasksRepository.swift */; };
 		1AD2928D29D8414600232D0E /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD2928C29D8414600232D0E /* Mocks.swift */; };
 		1AE978B129D4399F00AA62BB /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE978B029D4399F00AA62BB /* Container.swift */; };
@@ -101,6 +102,7 @@
 		1A5E872829D33F390012ACD7 /* BoardTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTag.swift; sourceTree = "<group>"; };
 		1A5E873329D427C40012ACD7 /* BoardsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardsRepository.swift; sourceTree = "<group>"; };
 		1A6161DB29CC62CC00C7E63B /* StyledPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledPicker.swift; sourceTree = "<group>"; };
+		1AA951AF29E06A6B009467FC /* DefaultAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAnimation.swift; sourceTree = "<group>"; };
 		1AD2928029D8245700232D0E /* TasksRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksRepository.swift; sourceTree = "<group>"; };
 		1AD2928C29D8414600232D0E /* Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
 		1AE978B029D4399F00AA62BB /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				1A5E872829D33F390012ACD7 /* BoardTag.swift */,
 				1A22EBF629D5886000F50DA2 /* DeadlinePicker.swift */,
 				1A28C4D729DDB47300C2C45B /* TaskDetailsForm.swift */,
+				1AA951AF29E06A6B009467FC /* DefaultAnimation.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -562,6 +565,7 @@
 				1A157D8D29D04DD2000E9EEB /* CreateTaskCoordinator.swift in Sources */,
 				1A22EBF529D450FF00F50DA2 /* ProviderModule.swift in Sources */,
 				1A157D9529D076DE000E9EEB /* CreateTaskViewModel.swift in Sources */,
+				1AA951B029E06A6B009467FC /* DefaultAnimation.swift in Sources */,
 				1A22EBF729D5886000F50DA2 /* DeadlinePicker.swift in Sources */,
 				1A5E872929D33F390012ACD7 /* BoardTag.swift in Sources */,
 				1A6161DC29CC62CC00C7E63B /* StyledPicker.swift in Sources */,

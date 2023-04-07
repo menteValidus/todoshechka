@@ -29,13 +29,17 @@ struct DeadlinePicker: View {
                     .font(isNotEditing ? .largeTitle.bold() : .subheadline.bold())
                     .opacity(isNotEditing ? 0.8 : 0.5)
                     .padding(.bottom, 6)
+                    .defaultAnimation(value: isEditingDate)
             }
             .allowsHitTesting(isNotEditing)
+            
             
             if isEditingDate {
                 DatePicker(selection: $date, label: {  })
                     .labelsHidden()
                     .datePickerStyle(.wheel)
+                    .transition(.opacity.defaultAnimation())
+                
                 
                 HStack(spacing: 20) {
                     Spacer()
@@ -47,6 +51,7 @@ struct DeadlinePicker: View {
                         Image(systemName: "xmark")
                     }
                 }
+                .transition(.opacity.defaultAnimation())
                 .opacity(0.6)
                 .font(.largeTitle)
                 .foregroundColor(R.color.tags.onAccent.color)
