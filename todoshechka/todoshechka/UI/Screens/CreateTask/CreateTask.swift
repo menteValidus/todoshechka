@@ -14,30 +14,33 @@ struct CreateTask: View {
     @State private var isShowingAlert = false
     
     var body: some View {
-        ScrollView(showsIndicators: false) {
-            VStack(alignment: .leading) {
-                topActionItems
-                    .padding(.horizontal, 24)
-                
-                TaskDetailsForm(
-                    boardTags: viewModel.boardTags,
-                    selectedBoardId: viewModel.selectedBoardId,
-                    taskName: $viewModel.taskName,
-                    description: $viewModel.description,
-                    deadlineModel: viewModel.deadlineModel,
-                    dateSelected: { date in
-                        viewModel.selectDate(date: date)
-                    },
-                    boardSelected: { boardId in
-                        viewModel.selectBoard(boardId: boardId)
-                    }
-                )
+        TaskDetailsForm(
+            toolbarItem: {
+                cancelButton
+            },
+            backgroundColor: viewModel.backgroundColor,
+            boardTags: viewModel.boardTags,
+            selectedBoardId: viewModel.selectedBoardId,
+            taskName: $viewModel.taskName,
+            description: $viewModel.description,
+            deadlineModel: viewModel.deadlineModel,
+            fabEnabled: viewModel.createButtonEnabled,
+            dateSelected: { date in
+                viewModel.selectDate(date: date)
+            },
+            boardSelected: { boardId in
+                viewModel.selectBoard(boardId: boardId)
+            },
+            fabTapped: {
+                Task {
+                    await viewModel.createTask()
+                    self.dismiss()
+                }
             }
-            .task {
-                await viewModel.load()
-            }
+        )
+        .task {
+            await viewModel.load()
         }
-        .preferredColorScheme(.light)
         .alert(
             "Are you sure to discard changes?",
             isPresented: $isShowingAlert,
@@ -47,20 +50,6 @@ struct CreateTask: View {
                     action: dismiss.callAsFunction,
                     label: { Text("Yes") }
                 )
-            }
-        )
-        .scrollDismissesKeyboard(.interactively)
-        .background(
-            viewModel.backgroundColor
-                .ignoresSafeArea()
-        )
-        .overlay(
-            VStack {
-                Spacer()
-                
-                createTaskButton
-                .frame(width: 80)
-                .padding()
             }
         )
     }
@@ -74,23 +63,15 @@ private extension CreateTask {
             dismiss()
         }
     }
-    
-    func alertDismissed() {
-        isShowingAlert = false
-    }
 }
 
 private extension CreateTask {
-    var topActionItems: some View {
-        HStack {
-            Spacer()
-            Button(action: cancelTapped) {
-                Image(systemName: "xmark")
-                    .foregroundColor(R.color.onPrimaryVariant3.color)
-            }
-            .buttonStyle(CircleButtonStyle(backgroundColor: R.color.primary.color))
-            .frame(width: 40)
+    var cancelButton: some View {
+        Button(action: cancelTapped) {
+            Image(systemName: "xmark")
+                .foregroundColor(R.color.onPrimaryVariant3.color)
         }
+        .buttonStyle(CircleButtonStyle(backgroundColor: R.color.primary.color))
     }
     
     var createTaskButton: some View {
