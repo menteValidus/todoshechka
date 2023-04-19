@@ -38,21 +38,7 @@ extension CreateTask {
         private let tasksRepository: ITasksRepository
         private let tagColorProvider: ITagColorProvider
         
-        private lazy var deadlineDateFormatter: DateFormatter = {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateStyle = .medium
-            dateFormatter.timeStyle = .none
-            
-            return dateFormatter
-        }()
-        
-        private lazy var deadlineTimeFormatter: DateFormatter = {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateStyle = .none
-            dateFormatter.timeStyle = .short
-            
-            return dateFormatter
-        }()
+        private lazy var deadlineMapper = DateToDeadlineModelMapper()
         
         nonisolated init(
             boardsRepository: IBoardsRepository,
@@ -83,11 +69,7 @@ extension CreateTask {
         func selectDate(date: Date) {
             guard date != deadlineModel?.rawDate else { return }
             
-            deadlineModel = .init(
-                rawDate: date,
-                formattedTime: deadlineTimeFormatter.string(from: date),
-                formattedDate: deadlineDateFormatter.string(from: date)
-            )
+            deadlineModel = deadlineMapper.map(date)
         }
         
         func createTask() async {

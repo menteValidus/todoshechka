@@ -5,9 +5,11 @@
 import SwiftUI
 
 struct TaskDetails: View {
-    private let animationDuration: CGFloat = 0.2
-    
     @State var isEditing = false
+    
+    @ObservedObject var viewModel: ViewModel
+    
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         TaskDetailsForm(
@@ -15,15 +17,15 @@ struct TaskDetails: View {
             toolbarItem: {
                 toolbarButton
             },
-            backgroundColor: .accentColor,
+            backgroundColor: .gray,
             boardTags: [],
             selectedBoardId: 0,
-            taskName: .constant("test"),
-            description: .constant("test"),
+            taskName: $viewModel.taskName,
+            description: $viewModel.taskDescription,
             deadlineModel: nil,
             dateSelected: { _ in },
             boardSelected: { _ in },
-            fabTapped: {}
+            fabTapped: { dismiss() }
         )
     }
 }
@@ -35,7 +37,7 @@ private extension TaskDetails {
                 .foregroundColor(R.color.onPrimaryVariant3.color)
         }
         .buttonStyle(CircleButtonStyle(backgroundColor: R.color.primary.color))
-        .animation(.easeInOut(duration: animationDuration), value: isEditing)
+        .defaultAnimation(value: isEditing)
     }
 }
 
@@ -51,6 +53,6 @@ private extension TaskDetails {
 
 struct TaskDetails_Previews: PreviewProvider {
     static var previews: some View {
-        TaskDetails()
+        TaskDetails(viewModel: Container.shared.taskDetailsViewModelFactory.create(taskId: 0))
     }
 }

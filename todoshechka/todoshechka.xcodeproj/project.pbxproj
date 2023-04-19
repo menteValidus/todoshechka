@@ -32,6 +32,9 @@
 		1A22EBF729D5886000F50DA2 /* DeadlinePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A22EBF629D5886000F50DA2 /* DeadlinePicker.swift */; };
 		1A28C4D629DCAA8A00C2C45B /* TaskDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A28C4D529DCAA8A00C2C45B /* TaskDetails.swift */; };
 		1A28C4D829DDB47300C2C45B /* TaskDetailsForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A28C4D729DDB47300C2C45B /* TaskDetailsForm.swift */; };
+		1A3FA74729F06B3E00D8DEBA /* TaskDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3FA74629F06B3E00D8DEBA /* TaskDetailsViewModel.swift */; };
+		1A3FA74B29F06E7D00D8DEBA /* DateToDeadlineModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3FA74A29F06E7D00D8DEBA /* DateToDeadlineModelMapper.swift */; };
+		1A3FA74D29F0704000D8DEBA /* TaskDetailsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3FA74C29F0704000D8DEBA /* TaskDetailsCoordinator.swift */; };
 		1A50C61C29CB51FA00B137E3 /* todoshechkaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A50C61B29CB51FA00B137E3 /* todoshechkaApp.swift */; };
 		1A50C61E29CB51FA00B137E3 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A50C61D29CB51FA00B137E3 /* MainScreen.swift */; };
 		1A50C62029CB51FB00B137E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A50C61F29CB51FB00B137E3 /* Assets.xcassets */; };
@@ -90,6 +93,9 @@
 		1A22EBF629D5886000F50DA2 /* DeadlinePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadlinePicker.swift; sourceTree = "<group>"; };
 		1A28C4D529DCAA8A00C2C45B /* TaskDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetails.swift; sourceTree = "<group>"; };
 		1A28C4D729DDB47300C2C45B /* TaskDetailsForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailsForm.swift; sourceTree = "<group>"; };
+		1A3FA74629F06B3E00D8DEBA /* TaskDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailsViewModel.swift; sourceTree = "<group>"; };
+		1A3FA74A29F06E7D00D8DEBA /* DateToDeadlineModelMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateToDeadlineModelMapper.swift; sourceTree = "<group>"; };
+		1A3FA74C29F0704000D8DEBA /* TaskDetailsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailsCoordinator.swift; sourceTree = "<group>"; };
 		1A50C61829CB51FA00B137E3 /* todoshechka.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = todoshechka.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A50C61B29CB51FA00B137E3 /* todoshechkaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = todoshechkaApp.swift; sourceTree = "<group>"; };
 		1A50C61D29CB51FA00B137E3 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
@@ -284,8 +290,18 @@
 			isa = PBXGroup;
 			children = (
 				1A28C4D529DCAA8A00C2C45B /* TaskDetails.swift */,
+				1A3FA74629F06B3E00D8DEBA /* TaskDetailsViewModel.swift */,
+				1A3FA74C29F0704000D8DEBA /* TaskDetailsCoordinator.swift */,
 			);
 			path = TaskDetails;
+			sourceTree = "<group>";
+		};
+		1A3FA74929F06E6D00D8DEBA /* Mapper */ = {
+			isa = PBXGroup;
+			children = (
+				1A3FA74A29F06E7D00D8DEBA /* DateToDeadlineModelMapper.swift */,
+			);
+			path = Mapper;
 			sourceTree = "<group>";
 		};
 		1A50C60F29CB51FA00B137E3 = {
@@ -342,6 +358,7 @@
 		1A5E873129D427990012ACD7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1A3FA74929F06E6D00D8DEBA /* Mapper */,
 				1A22EBF029D4505600F50DA2 /* Provider */,
 				1A5E873229D427A50012ACD7 /* Repository */,
 			);
@@ -570,13 +587,16 @@
 				1A5E872929D33F390012ACD7 /* BoardTag.swift in Sources */,
 				1A6161DC29CC62CC00C7E63B /* StyledPicker.swift in Sources */,
 				1A157D6E29CE1077000E9EEB /* RelativeWeekDayFormatter.swift in Sources */,
+				1A3FA74D29F0704000D8DEBA /* TaskDetailsCoordinator.swift in Sources */,
 				1A157D2D29CD9C88000E9EEB /* Callbacks.swift in Sources */,
 				1A28C4D629DCAA8A00C2C45B /* TaskDetails.swift in Sources */,
 				1A157D2A29CD9072000E9EEB /* Card.swift in Sources */,
 				1A50C61C29CB51FA00B137E3 /* todoshechkaApp.swift in Sources */,
 				1A157D7B29CF32B8000E9EEB /* Task.swift in Sources */,
 				1A157D8829D04A0F000E9EEB /* MainScreenCoordinator.swift in Sources */,
+				1A3FA74729F06B3E00D8DEBA /* TaskDetailsViewModel.swift in Sources */,
 				1A28C4D829DDB47300C2C45B /* TaskDetailsForm.swift in Sources */,
+				1A3FA74B29F06E7D00D8DEBA /* DateToDeadlineModelMapper.swift in Sources */,
 				1A157D2529CC73EA000E9EEB /* ColorResource+SwiftUI.swift in Sources */,
 				1A22EBF229D4506400F50DA2 /* TagColorProvider.swift in Sources */,
 			);

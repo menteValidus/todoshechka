@@ -112,7 +112,8 @@ final class MainScreenViewModelTests: XCTestCase {
             boardsRepository: boardsRepository,
             tagColorProvider: tagColorProvider,
             dateGenerator: dateGenerator,
-            createTaskButtonTapped: createTaskButtonTapped
+            createTaskButtonTapped: createTaskButtonTapped,
+            taskTapped: { _ in }
         )
     }
 }

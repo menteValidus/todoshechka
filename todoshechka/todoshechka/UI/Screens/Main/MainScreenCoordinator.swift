@@ -18,9 +18,9 @@ extension MainScreen {
                     }
                 )
                 .fullScreenCover(
-                    isPresented: $object.taskDetailsAppears,
-                    content: {
-                        TaskDetails()
+                    $object.taskDetailsId,
+                    content: { id in
+                        TaskDetails.CoordinatorView(taskId: id)
                     }
                 )
         }
@@ -30,7 +30,7 @@ extension MainScreen {
         @Published private(set) var viewModel: ViewModel!
         
         @Published var createTaskAppears = false
-        @Published var taskDetailsAppears = false
+        @Published var taskDetailsId: Int?
         
         init(viewModelFactory: ViewModel.InjectedFactory) {
             viewModel = viewModelFactory.create(
@@ -44,7 +44,29 @@ extension MainScreen {
         }
         
         private func navigateToTaskDetails(taskId: Int) {
-            taskDetailsAppears = true
+            taskDetailsId = taskId
         }
+    }
+}
+
+extension View {
+    func fullScreenCover<Value, Content: View>(_ value: Binding<Value?>, content: @escaping (Value) -> Content) -> some View {
+        fullScreenCover(
+            isPresented: .init(
+                get: {
+                    value.wrappedValue != nil
+                },
+                set: { appears in
+                    if !appears {
+                        value.wrappedValue = nil
+                    }
+                }
+            ),
+            content: {
+                if let value = value.wrappedValue {
+                    content(value)
+                }
+            }
+        )
     }
 }

@@ -30,6 +30,8 @@ struct TaskDetailsForm<Content: View>: View {
                     .padding(.top)
                 
                 taskTitleField
+                    .disabled(!isEditing)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     .focused($focusedField, equals: .title)
                     .padding(.top)
                 
@@ -37,8 +39,11 @@ struct TaskDetailsForm<Content: View>: View {
                     model: deadlineModel,
                     onDateSelected: dateSelected
                 )
+                .allowsHitTesting(isEditing)
                 
                 descriptionField
+                    .disabled(!isEditing)
+                    .frame(maxWidth: .infinity, minHeight: 200, alignment: .topLeading)
                     .focused($focusedField, equals: .description)
                     .padding(.top)
                 
@@ -87,7 +92,7 @@ private extension TaskDetailsForm {
         HStack {
             Spacer()
             toolbarItem()
-                .frame(width: 40)
+                .frame(width: 40, height: 40)
         }
     }
     

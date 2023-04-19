@@ -23,6 +23,7 @@ class TagColorProviderMock: ITagColorProvider {
 }
 
 class TasksRepositoryMock: ITasksRepository {
+    
     typealias CreatedTaskInfo = (name: String, description: String, deadline: Date?, boardId: Int)
     
     var _eventPublisher: PassthroughSubject<TaskRepositoryEvent, Never>
@@ -41,5 +42,9 @@ class TasksRepositoryMock: ITasksRepository {
     var createdTaskInfo: CreatedTaskInfo?
     func createTask(name: String, description: String, deadline: Date?, boardId: Int) async {
         createdTaskInfo = (name: name, description: description, deadline: deadline, boardId: boardId)
+    }
+    
+    func get(byId id: Int) async -> Todo.Task {
+        tasks.first!
     }
 }

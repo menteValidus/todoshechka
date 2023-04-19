@@ -11,6 +11,10 @@ extension Container {
         )
     }
     
+    var taskDetailsViewModelFactory: TaskDetails.ViewModel.InjectedFactory {
+        .init()
+    }
+    
     var mainScreenViewModelFactory: MainScreen.ViewModel.InjectedFactory {
         .init()
     }
@@ -29,6 +33,14 @@ extension MainScreen.ViewModel {
                 createTaskButtonTapped: createTaskButtonTapped,
                 taskTapped: taskTapped
             )
+        }
+    }
+}
+
+extension TaskDetails.ViewModel {
+    final class InjectedFactory {
+        func create(taskId: Int) -> TaskDetails.ViewModel {
+            .init(tasksRepository: Container.shared.tasksRepository, taskId: taskId)
         }
     }
 }
