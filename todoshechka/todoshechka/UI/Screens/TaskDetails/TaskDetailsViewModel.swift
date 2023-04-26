@@ -5,6 +5,7 @@
 import Foundation
 
 extension TaskDetails {
+    @MainActor
     final class ViewModel: ObservableObject {
         @Published var taskName: String = ""
         @Published var taskDescription: String = ""
@@ -15,7 +16,7 @@ extension TaskDetails {
         
         private lazy var deadlineMapper = DateToDeadlineModelMapper()
         
-        init(tasksRepository: ITasksRepository, taskId: Int) {
+        nonisolated init(tasksRepository: ITasksRepository, taskId: Int) {
             self.tasksRepository = tasksRepository
             self.taskId = taskId
         }

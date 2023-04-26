@@ -27,6 +27,9 @@ struct TaskDetails: View {
             boardSelected: { _ in },
             fabTapped: { dismiss() }
         )
+        .onAppear {
+            viewModel.start()
+        }
     }
 }
 
